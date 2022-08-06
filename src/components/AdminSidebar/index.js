@@ -3,7 +3,6 @@ import LogoSvg from '../../assets/Logo.svg';
 import { 
     AiOutlineDoubleLeft, 
     AiOutlineDoubleRight, 
-    AiOutlineArrowLeft, 
     AiOutlineUser, 
     AiOutlineBook,
     AiOutlineCalendar,
@@ -52,7 +51,7 @@ export const AdminSidebar = () => {
 
     return (
         <Container collapse={collapse} >
-            <div classname="sidebar">
+            <div className="sidebar">
                 <div className='sidebar-header'>
                     <img src={LogoSvg} alt="Logo" />
                     {collapse? <AiOutlineDoubleRight onClick={collapseButton} className='icon'/> : <AiOutlineDoubleLeft onClick={collapseButton} className='icon'/> }

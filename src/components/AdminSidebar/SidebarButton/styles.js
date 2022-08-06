@@ -10,6 +10,7 @@ export const ButtonContainer = styled.button`
     padding-left: 0.8rem;
     background-color: transparent;
     color: #fff;
+    cursor: pointer;
 
     font-family: 'Fira Sans';
     font-style: normal;

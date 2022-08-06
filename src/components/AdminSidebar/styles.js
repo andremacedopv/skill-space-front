@@ -9,6 +9,8 @@ export const Container = styled.div`
     border-radius: 0px 5px 5px 0px;
     transition: width 0.2s;
 
+    transition: 0.2s linear;
+
     position: relative;
     top: 0;
     z-index: 1;
@@ -71,6 +73,7 @@ export const Container = styled.div`
         width: 2.5rem;
         color: #fff;
         trasition: 0.2s;
+        cursor: pointer;
     }.icon:hover {
         color: rgba(255, 255, 255, 0.6);
     }
@@ -78,10 +81,8 @@ export const Container = styled.div`
     ${(props) => {
         if (props.collapse) {
             return `
-                transition: 0.2s linear;
-
                 .icon {
-                    trasition: 0.2s;
+                    transition: 1s;
                 }
 
                 .sidebar-header {

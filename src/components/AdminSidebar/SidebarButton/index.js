@@ -6,8 +6,12 @@ const SidebarButton = ({ children, Icon, options, collapse, setCollapse, ...prop
     const [expand, setExpand] = useState(false);
 
     const expandButton = () => {
+        if (collapse) {
+            setExpand(true);
+        } else {
+            setExpand(!expand);
+        }
         setCollapse(false);
-        setExpand(!expand);
     }
 
     return (

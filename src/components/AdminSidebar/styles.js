@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     min-height: 100vh;
+    height: 100vh;
     min-width: 16.75rem;
     width: 16.75rem;
     background-color: #004E98;
@@ -12,7 +13,7 @@ export const Container = styled.div`
     top: 0;
     z-index: 1;
 
-    overflow-y: auto;
+    overflow: auto;
 
     font-family: 'Fira Sans';
     font-style: normal;
@@ -51,9 +52,7 @@ export const Container = styled.div`
         align-items: center;
         position: absolute; 
         bottom: 0;
-        margin-bottom: 1.5rem;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
+        margin: 1.5rem;
         color: #fff;
 
         font-size: 1.2rem;

@@ -114,10 +114,10 @@ export const AdminSidebar = () => {
                     </SidebarButton>
                 </div>
 
-                <div className='sidebar-bottom'>
+                {/* <div className='sidebar-bottom'>
                     <AiOutlineArrowLeft className='icon-bottom'/>
                     <span className='bottom-text'>Voltar para o site</span>
-                </div>
+                </div> */}
             </div>
         </Container>
     );

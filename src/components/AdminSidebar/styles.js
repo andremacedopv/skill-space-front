@@ -31,9 +31,7 @@ export const Container = styled.div`
     .sidebar-header {
         display: flex;
         flex-direction: row;
-        margin-top: 1.5rem;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
+        margin: 1.5rem 1.5rem 0;
         justify-content: space-between;
 
         img {
@@ -72,7 +70,6 @@ export const Container = styled.div`
         height: 2.5rem;
         width: 2.5rem;
         color: #fff;
-        trasition: 0.2s;
         cursor: pointer;
     }.icon:hover {
         color: rgba(255, 255, 255, 0.6);
@@ -81,11 +78,9 @@ export const Container = styled.div`
     ${(props) => {
         if (props.collapse) {
             return `
-                .icon {
-                    transition: 1s;
-                }
 
                 .sidebar-header {
+                    margin: 1.5rem auto 0;
                     img {
                         display: none;
                     }

@@ -11,8 +11,8 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: ${(props) => props.collapse ? "40px" : "90px"};
-    width: ${(props) => props.collapse ? "40px" : "90px"};
+    height: ${(props) => props.collapse ? "45px" : "90px"};
+    width: ${(props) => props.collapse ? "45px" : "90px"};
     background-color: #DAD8D8;
 
     cursor: pointer;
@@ -24,8 +24,8 @@ export const Container = styled.div`
     transition: 0.4s;
 
     .button-icon {
-      height: ${(props) => props.collapse ? "1.5rem" : "2.5rem"};
-      width: ${(props) => props.collapse ? "1.5rem" : "2.5rem"};
+      height: ${(props) => props.collapse ? "1.6rem" : "2.5rem"};
+      width: ${(props) => props.collapse ? "1.6rem" : "2.5rem"};
       color:  ${(props) => props.color};
       transition: 0.4s;
     }

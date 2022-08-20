@@ -47,12 +47,11 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 30px;
+        gap: 15px;
         
         .sidebar-buttons-row {
             display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+            flex-direction: ${(props) => props.collapse ? "column" : "row"};;
             justify-content: center;
             gap: 15px;
         }

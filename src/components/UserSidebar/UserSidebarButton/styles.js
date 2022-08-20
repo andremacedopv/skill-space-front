@@ -6,14 +6,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100%;
-  width: 100%;
 
   button{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
     background-color: #DAD8D8;
   
     border: 1px solid #908D8D;
@@ -26,11 +25,11 @@ export const Container = styled.div`
       color:  ${(props) => props.color};
       cursor: pointer;
     }
-
   }
 
   p{
     font-family: 'Roboto Flex';
     color: #747070;
+    margin-bottom: 0;
   }
 `

@@ -41,7 +41,9 @@ export const Container = styled.div`
 
     .sidebar-body {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
         margin-top: 2.5rem;
         margin-left: 1rem;
         margin-right: 1rem;

@@ -5,8 +5,8 @@ export const Container = styled.div`
     height: 100vh;
     min-width: 16.75rem;
     width: 16.75rem;
-    background-color: #004E98;
-    border-radius: 0px 5px 5px 0px;
+    background-color: #DFDFDF;
+    border-right: 4px solid #004E98;
     transition: width 0.2s;
 
     transition: 0.2s linear;
@@ -69,10 +69,10 @@ export const Container = styled.div`
     .icon {
         height: 2.5rem;
         width: 2.5rem;
-        color: #fff;
+        color: #004E98;
         cursor: pointer;
     }.icon:hover {
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(0,78,152, 0.6);
     }
 
     ${(props) => {

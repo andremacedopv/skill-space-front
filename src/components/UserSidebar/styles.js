@@ -23,9 +23,10 @@ export const Container = styled.div`
 
     .sidebar {
         padding: 0 5%;
-        margin-top: 1rem;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
     }
 
     .sidebar-header {
@@ -46,46 +47,46 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 30px;
         
-        .sidebar-buttons {
+        .sidebar-buttons-row {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
         }
+    }
+    .profile {
+        padding: 30px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        
+        img{
+            object-fit: cover;
+            height: ${(props) => props.collapse ? "40px" : "50px"};
+            width: ${(props) => props.collapse ? "40px" : "50px"};
+            border-radius: 30px;
+        }
 
-        .profile {
-            padding-top: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            
-            img{
-                object-fit: cover;
-                height: ${(props) => props.collapse ? "40px" : "50px"};
-                width: ${(props) => props.collapse ? "40px" : "50px"};
-                border-radius: 30px;
+        .profile-texts{
+            display:  ${(props) => props.collapse ? "none" : "block"};
+            p {
+                margin: 0;
             }
-
-            .profile-texts{
-                display:  ${(props) => props.collapse ? "none" : "block"};
-                p {
-                    margin: 0;
-                }
-                .profile-name{
-                    font-size: 20px;
-                    color: #352F2F;
-                }
-                .profile-email{
-                    font-size: 16px;
-                    color: #7C7979;
-                }
+            .profile-name{
+                font-size: 20px;
+                color: #352F2F;
+            }
+            .profile-email{
+                font-size: 16px;
+                color: #7C7979;
             }
         }
     }
-
+    
     .icon {
         height: 2.5rem;
         width: 2.5rem;

@@ -32,20 +32,25 @@ export const UserSidebar = () => {
                 </div>
 
                 <div className='sidebar-body'>
-                    <div className = 'sidebar-buttons'>
+                    <div className='sidebar-buttons-row'>
                         <UserSidebarButton collapse={collapse} Icon={RiBallPenFill} text="Atividades" color="#980012" />
                         <UserSidebarButton collapse={collapse} Icon={FaCalendar} text="Eventos" color="#988900" />
+                    </div>
+                    <div className='sidebar-buttons-row'>
                         <UserSidebarButton collapse={collapse} Icon={FaHashtag} text="Postagens" color="#830098" />
                         <UserSidebarButton collapse={collapse} Icon={BsFillChatDotsFill} text="Mensagens" color="#1E9800" />
+                    </div>
+                    <div className='sidebar-buttons-row'>
                         <UserSidebarButton collapse={collapse} Icon={RiQuestionFill} text="Ajuda" color="#747070" />
                         <UserSidebarButton collapse={collapse} Icon={GoGear} text="Configurações" color="#004E98" />
                     </div>
-                    <div className='profile'>
-                        <img src={userImg}></img>
-                        <div className='profile-texts'>
-                            <p className='profile-name'>Maria Fulana</p>
-                            <p className='profile-email'>marifu@mail.com</p>
-                        </div>
+                </div>
+
+                <div className='profile'>
+                    <img src={userImg}></img>
+                    <div className='profile-texts'>
+                        <p className='profile-name'>Maria Fulana</p>
+                        <p className='profile-email'>marifu@mail.com</p>
                     </div>
                 </div>
             </div>

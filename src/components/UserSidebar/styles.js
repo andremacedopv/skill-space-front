@@ -43,6 +43,7 @@ export const Container = styled.div`
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 15px;
         margin-top: 2.5rem;
         margin-left: 1rem;

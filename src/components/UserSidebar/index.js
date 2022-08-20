@@ -2,9 +2,11 @@ import { Container } from './styles';
 import LogoSvg from '../../assets/LogoBlue.svg';
 import { 
     AiOutlineDoubleLeft, 
-    AiOutlineDoubleRight, 
+    AiOutlineDoubleRight,
 } from "react-icons/ai";
+import { RiBallPenFill } from "react-icons/ri"
 import { useState } from 'react'
+import UserSidebarButton from './UserSidebarButton';
 
 
 export const UserSidebar = () => {
@@ -23,7 +25,7 @@ export const UserSidebar = () => {
                 </div>
 
                 <div className='sidebar-body'>
-
+                    <UserSidebarButton Icon={RiBallPenFill} text="Atividades" color="#980012" />
                 </div>
             </div>
         </Container>

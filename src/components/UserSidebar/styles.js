@@ -47,25 +47,6 @@ export const Container = styled.div`
         margin-right: 1rem;
     }
 
-    .sidebar-bottom {
-        display: flex;
-        align-items: center;
-        position: absolute; 
-        bottom: 0;
-        margin: 1.5rem;
-        color: #fff;
-
-        font-size: 1.2rem;
-
-        .icon-bottom {
-            height: 1.7rem;
-            width: 1.7rem;
-            margin-right: 0.5rem;
-        }
-    }.sidebar-bottom:hover {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
     .icon {
         height: 2.5rem;
         width: 2.5rem;
@@ -78,16 +59,9 @@ export const Container = styled.div`
     ${(props) => {
         if (props.collapse) {
             return `
-
                 .sidebar-header {
                     margin: 1.5rem auto 0;
                     img {
-                        display: none;
-                    }
-                }
-
-                .sidebar-bottom {
-                    .bottom-text {
                         display: none;
                     }
                 }

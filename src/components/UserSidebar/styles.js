@@ -15,17 +15,17 @@ export const Container = styled.div`
     top: 0;
     z-index: 1;
 
-    overflow: auto;
+    overflow: hidden;
 
     font-family: 'Fira Sans';
     font-style: normal;
     font-weight: 400;
 
     .sidebar {
-        display: flex;
-        flex-direction: column;
         padding: 0 5%;
         margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
     }
 
     .sidebar-header {
@@ -40,14 +40,50 @@ export const Container = styled.div`
     }
 
     .sidebar-body {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
         margin-top: 2.5rem;
         margin-left: 1rem;
         margin-right: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .sidebar-buttons {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .profile {
+            padding-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            
+            img{
+                object-fit: cover;
+                height: ${(props) => props.collapse ? "40px" : "50px"};
+                width: ${(props) => props.collapse ? "40px" : "50px"};
+                border-radius: 30px;
+            }
+
+            .profile-texts{
+                display:  ${(props) => props.collapse ? "none" : "block"};
+                p {
+                    margin: 0;
+                }
+                .profile-name{
+                    font-size: 20px;
+                    color: #352F2F;
+                }
+                .profile-email{
+                    font-size: 16px;
+                    color: #7C7979;
+                }
+            }
+        }
     }
 
     .icon {

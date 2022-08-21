@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   gap: 20px;
+  max-height: 120px;
 
   .date-box{
     display: flex;
@@ -13,18 +14,17 @@ export const Container = styled.div`
     border-radius: 16px;
 
     background-color: #004E98;
-    padding: 0.6vw;
-
-    min-height: 130px;
-    min-width: 130px;
+    padding: 10px;
+    
+    min-width: 100px;
 
     h1{
-      font-size: 75px;
+      font-size: 60px;
       font-weight: 500;
       color: white;
     }
     h3 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 500;
       color: white;
     }
@@ -36,6 +36,7 @@ export const Container = styled.div`
     flex-grow: 1;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
     
     background-color: #E4E4E4;
     border-radius: 16px;
@@ -52,6 +53,7 @@ export const Container = styled.div`
         color: #282323;
         font-size: 30px;
         font-weight: 500;
+        margin: 0;
       }
 
       .event-description{

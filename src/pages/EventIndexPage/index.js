@@ -20,7 +20,7 @@ const EventIndexPage = () => {
     {
       name: "Segundo Evento lendário",
       description: "O melhor evento que você vai encontrar no mundo todo",
-      date: "10/04/2020",
+      date: "10/12/2020",
       guestName: "Jonas",
       place: "Mané Garrincha"
     }

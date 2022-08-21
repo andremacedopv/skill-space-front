@@ -58,6 +58,11 @@ export const Container = styled.div`
         color: #514747;
         font-size: 18px;
         font-weight: 400;
+
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
 
       .info-row{

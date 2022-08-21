@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+
+    a {
+        text-decoration: none;
+    }
+
     min-height: 100vh;
     min-width: 16.75rem;
     width: 16.75rem;

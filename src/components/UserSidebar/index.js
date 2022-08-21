@@ -12,12 +12,17 @@ import { BsFillChatDotsFill} from "react-icons/bs"
 import { GoGear} from "react-icons/go"
 
 
+import { Link,useLocation } from "react-router-dom";
 import { useState } from 'react'
+
 import UserSidebarButton from './UserSidebarButton';
 
 
 export const UserSidebar = () => {
     const [collapse, setCollapse] = useState(false);
+
+    const location = useLocation().pathname
+    console.log(location)
 
     const collapseButton = () => {
         setCollapse(!collapse);
@@ -34,7 +39,17 @@ export const UserSidebar = () => {
                 <div className='sidebar-body'>
                     <div className='sidebar-buttons-row'>
                         <UserSidebarButton collapse={collapse} Icon={RiBallPenFill} text="Atividades" color="#980012" />
-                        <UserSidebarButton collapse={collapse} Icon={FaCalendar} text="Eventos" color="#988900" />
+                        <Link 
+                            to={'/event'}>
+                            <UserSidebarButton 
+                                collapse={collapse} 
+                                selected={location === "/event"}
+                                Icon={FaCalendar} 
+                                text="Eventos" 
+                                color="#988900" 
+                            />
+                        </Link>
+                        
                     </div>
                     <div className='sidebar-buttons-row'>
                         <UserSidebarButton collapse={collapse} Icon={FaHashtag} text="Postagens" color="#830098" />

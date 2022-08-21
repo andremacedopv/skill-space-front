@@ -17,7 +17,15 @@ const EventIndexPage = () => {
 
       <section className="my-invites">
         <h2>Meus convites</h2>
-        <EventContainer/>
+        <div className="events-container">
+          <EventContainer/>
+          <EventContainer/>
+          <EventContainer/>
+          <EventContainer/>
+          <EventContainer/>
+          <EventContainer/>
+          
+        </div>
       </section>
 
       <h2>Próximos Eventos</h2>

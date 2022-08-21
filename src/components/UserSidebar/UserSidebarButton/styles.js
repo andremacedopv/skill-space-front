@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100%;
+  gap: 10px;
 
   button{
     display: flex;
@@ -41,6 +42,7 @@ export const Container = styled.div`
 
   p{
     font-family: 'Roboto Flex';
+    font-size: 15px;
     color: #747070;
     margin-bottom: 0;
     display: ${(props) => props.collapse ? "none" : "block"}

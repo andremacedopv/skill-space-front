@@ -55,6 +55,13 @@ export const Container = styled.div`
       color: #004E98;
       font-weight: 500;
       font-size: 27px;    
+      margin-bottom: 2vh;
+    }
+
+    .events-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
   }
 

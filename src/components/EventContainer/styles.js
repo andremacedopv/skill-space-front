@@ -33,8 +33,9 @@ export const Container = styled.div`
   .event-info{
     
     display: flex;
+    flex-grow: 1;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     
     background-color: #E4E4E4;
     border-radius: 16px;

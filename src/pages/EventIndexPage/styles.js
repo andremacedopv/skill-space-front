@@ -57,12 +57,40 @@ export const Container = styled.div`
       font-size: 27px;    
       margin-bottom: 2vh;
     }
+  }
 
-    .events-container {
+  .events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  section.my-events{
+    .event-tabs {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      gap: 25px;
+      margin-bottom: 3vh;
+      
+      h2 {
+        color: #666666;
+        font-weight: 400;
+        font-size: 27px;    
+        cursor: pointer;
+        transition: 0.4s;
+      }
+
+      h2:hover {
+        filter: contrast(200%);
+      }
+
+      h2.selected {
+        color: #004E98;
+        font-weight: 500;
+        font-size: 27px;    
+      }
+
     }
+
   }
 
 `;

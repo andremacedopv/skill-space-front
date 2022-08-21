@@ -1,30 +1,53 @@
 import { Container } from './styles'
 import { BsPlusLg } from "react-icons/bs"
 
-const EventContainer = ({children, ...props}) => {
-    return (
-        <Container> 
-          <div className='date-box'>
-            <h1> 23 </h1>
-            <h3> Maio </h3>
-          </div>
+const EventContainer = ({children, event, ...props}) => {
 
-          <div className='event-info'>
-            <div className='event-text'>
-              <h2 className='event-title'> Seminário da Inovação </h2>
-              <p className='event-description'> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent </p>
-              <div className='info-row'>
-                <p className='event-place'> Local: <span> Ulysses Guimarães </span> </p>
-                <p className='event-speaker'> Palestrante: <span> João gavião </span> </p>
-              </div>
-            </div>
-            <div className='more-info'>
-              <BsPlusLg className='plus-icon'/>
-              <p> Ver Detalhes </p>
-            </div>
+  function parseDay(date) {
+    return date.split('\/')[0]
+  }
+
+  function parseMonth(date) {
+    const month =  date.split('\/')[1]
+    switch(month){
+      case '01': return "Janeiro";
+      case '02': return "Fevereiro";
+      case '03': return "Março";
+      case '04': return "Abril";
+      case '05': return "Maio";
+      case '06': return "Junho"; 
+      case '07': return "Julho";
+      case '08': return "Agosto";
+      case '09': return "Setembro";
+      case '10': return "Outubro";
+      case '11': return "Novembro";
+      case '12': return "Dezembro";
+    }
+  }
+
+  return (
+    <Container> 
+      <div className='date-box'>
+        <h1> {parseDay(event.date)} </h1>
+        <h3> {parseMonth(event.date)} </h3>
+      </div>
+
+      <div className='event-info'>
+        <div className='event-text'>
+          <h2 className='event-title'> {event.name} </h2>
+          <p className='event-description'> {event.description} </p>
+          <div className='info-row'>
+            <p className='event-place'> Local: <span> {event.place} </span> </p>
+            <p className='event-speaker'> Palestrante: <span> {event.guestName} </span> </p>
           </div>
-        </Container>
-    )
+        </div>
+        <div className='more-info'>
+          <BsPlusLg className='plus-icon'/>
+          <p> Ver Detalhes </p>
+        </div>
+      </div>
+    </Container>
+  )
 }
 
 export default EventContainer

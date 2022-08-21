@@ -86,11 +86,28 @@ export const Container = styled.div`
       h2.selected {
         color: #004E98;
         font-weight: 500;
-        font-size: 27px;    
       }
 
     }
 
+  }
+
+  @media(max-width: 870px) {
+    padding: 5vh 6vw;
+
+    section.my-events{
+      .event-tabs {
+        gap: 10px;
+      
+        h2 {
+          color: #666666;
+          font-weight: 400;
+          font-size: 18px;    
+          cursor: pointer;
+          transition: 0.4s;
+        }
+      }
+    }
   }
 
 `;

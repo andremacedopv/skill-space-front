@@ -108,4 +108,10 @@ export const Container = styled.div`
     }
   }
 
+  @media(max-width: 870px) {
+    max-height: none;
+    flex-direction: column;
+    gap: 5px;
+  }
+
 `;

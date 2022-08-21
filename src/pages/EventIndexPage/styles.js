@@ -8,7 +8,7 @@ export const Container = styled.div`
   font-family: 'Roboto Flex';
   padding: 5vh 3vw;
 
-  .header{
+  section.header{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,6 +45,16 @@ export const Container = styled.div`
 
     .calendar-button:hover {
       filter: brightness(200%);
+    }
+  }
+
+  section.my-invites{
+    margin-bottom: 3vh;
+
+    h2 {
+      color: #004E98;
+      font-weight: 500;
+      font-size: 27px;    
     }
   }
 

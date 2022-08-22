@@ -47,7 +47,7 @@ export const UserSidebar = () => {
                 </div>
 
                 <div className='profile'>
-                    <img src={userImg}></img>
+                    <img src={userImg} alt="user profile"></img>
                     <div className='profile-texts'>
                         <p className='profile-name'>Maria Fulana</p>
                         <p className='profile-email'>marifu@mail.com</p>

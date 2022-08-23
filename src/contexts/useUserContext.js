@@ -35,6 +35,8 @@ const UserProvider = ({children}) => {
     const sign_out = async () => {
         if (window.confirm("Você deseja sair de sua conta?")){
             Cookies.remove('user')
+            setUser(null)
+            api.defaults.headers.common[`Authorization`] = '';
             navigate('/')
         }
     }
@@ -49,7 +51,7 @@ const UserProvider = ({children}) => {
             if(response.data){
                 setUser({...response.data.user})
                 var encrypted = CryptoJS.AES.encrypt(JSON.stringify({...response.data.user}), process.env.REACT_APP_CRYPTO_KEY).toString();
-                Cookies.set('user', encrypted, {expires: 1});
+                Cookies.set('user', encrypted, {expires: 1, sameSite: 'None', secure: true });
                 navigate('/')
                 api.defaults.headers.common['Authorization'] = response.data.token
             }

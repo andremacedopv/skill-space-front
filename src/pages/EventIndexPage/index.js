@@ -11,12 +11,29 @@ const EventIndexPage = () => {
 
   const [selectedTab, setSelectedTab] = useState('next-events')
   const [events, setEvents] = useState([])
+  
+  let year = ""
 
   useEffect(() => {
     api.get('event').then((response) => {
       setEvents(response.data.events)
     })
   }, [])
+
+  const groupEventByYear = (event, i) => {
+    if (year === event.date.split('-')[0]) {
+      return ( <EventContainer key={i} event={event}/> )
+    }
+    else {
+      year = event.date.split('-')[0]
+      return (
+        <>
+          <p class="events-date"> {event.date.split('-')[0]} </p>
+          <EventContainer key={i} event={event}/> 
+        </>
+      )
+    }
+  }
 
   return (
     <Container>
@@ -32,7 +49,7 @@ const EventIndexPage = () => {
       <section className="my-invites">
         <h2>Meus convites</h2>
         <div className="events-container">
-          { events.map((event,i) => <EventContainer key={i} event={event}/>) }
+          {/* { events.map((event,i) => <EventContainer key={i} event={event}/>) } */}
         </div>
       </section>
 
@@ -45,7 +62,11 @@ const EventIndexPage = () => {
           <h2 className={selectedTab === "past-events" ? "selected" : ""} onClick={() => setSelectedTab("past-events")}>Eventos Passados</h2>
         </div>
         <div className="events-container">
-          {/* { eventos.map((event,i) => <EventContainer key={i} event={event}/>) } */}
+          { 
+            events.map((event,i) => {
+              return(groupEventByYear(event, i))
+            }) 
+          }
         </div>
       </section>
     </Container>

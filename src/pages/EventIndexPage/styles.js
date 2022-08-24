@@ -63,6 +63,17 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    .events-date {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      font-weight: 500;
+      font-size: 21px;
+      color: #282424;
+    }
   }
 
   section.my-events{

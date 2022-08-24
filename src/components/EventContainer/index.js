@@ -37,8 +37,8 @@ const EventContainer = ({children, event, ...props}) => {
           <h2 className='event-title'> {event.name} </h2>
           <p className='event-description'> {event.description} </p>
           <div className='info-row'>
-            <p className='event-place'> Local: <span> {event.place} </span> </p>
             <p className='event-speaker'> Palestrante: <span> {event.invitedSpeakers.map(is => is.name).join(', ')} </span> </p>
+            <p className='event-online'> Remoto? <span> {event.remote ? "Sim" : "Não"} </span> </p>
           </div>
         </div>
         <div className='more-info'>

@@ -4,11 +4,11 @@ import { BsPlusLg } from "react-icons/bs"
 const EventContainer = ({children, event, ...props}) => {
 
   function parseDay(date) {
-    return date.split('\/')[0]
+    return date.split('-')[2].substring(0,2)
   }
 
   function parseMonth(date) {
-    const month =  date.split('\/')[1]
+    const month =  date.split('-')[1]
     switch(month){
       case '01': return "Janeiro";
       case '02': return "Fevereiro";
@@ -38,7 +38,7 @@ const EventContainer = ({children, event, ...props}) => {
           <p className='event-description'> {event.description} </p>
           <div className='info-row'>
             <p className='event-place'> Local: <span> {event.place} </span> </p>
-            <p className='event-speaker'> Palestrante: <span> {event.guestName} </span> </p>
+            <p className='event-speaker'> Palestrante: <span> {event.invitedSpeakers.map(is => is.name).join(', ')} </span> </p>
           </div>
         </div>
         <div className='more-info'>

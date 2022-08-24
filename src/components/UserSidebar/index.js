@@ -11,14 +11,16 @@ import { FaHashtag, FaCalendar } from "react-icons/fa"
 import { BsFillChatDotsFill} from "react-icons/bs"
 import { GoGear} from "react-icons/go"
 
-
 import { Link,useLocation } from "react-router-dom";
+import { useUserContext } from "../../contexts/useUserContext";
 import { useState } from 'react'
 
 import UserSidebarButton from './UserSidebarButton';
 
 
 export const UserSidebar = () => {
+
+    const { user } = useUserContext();
     const [collapse, setCollapse] = useState(false);
 
     const location = useLocation().pathname
@@ -61,13 +63,18 @@ export const UserSidebar = () => {
                     </div>
                 </div>
 
-                <div className='profile'>
-                    <img src={userImg}></img>
-                    <div className='profile-texts'>
-                        <p className='profile-name'>Maria Fulana</p>
-                        <p className='profile-email'>marifu@mail.com</p>
+                {
+                    user? 
+                    <div className='profile'>
+                        <img src={userImg} alt="user profile"></img>
+                        <div className='profile-texts'>
+                            <p className='profile-name'>{user.name}</p>
+                            <p className='profile-email'>{user.email}</p>
+                        </div>
                     </div>
-                </div>
+                    :
+                    <div className='profile'></div>
+                }
             </div>
         </Container>
     );

@@ -1,5 +1,4 @@
 import { Container } from "./styles"
-import { useState } from 'react'
 
 const UserSidebarButton = ({ children, Icon, text, color, selected, collapse, ...props }) => {
     return (

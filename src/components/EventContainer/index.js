@@ -22,6 +22,7 @@ const EventContainer = ({children, event, ...props}) => {
       case '10': return "Outubro";
       case '11': return "Novembro";
       case '12': return "Dezembro";
+      default: return "-"
     }
   }
 

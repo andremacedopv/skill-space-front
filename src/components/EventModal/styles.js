@@ -13,14 +13,51 @@ export const Container = styled.div`
 
   position: fixed;
   background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+
   display: flex;
   align-items: center;
   justify-content: center;
 
+  .close-button {
+    position: absolute;
+    right: -15px;
+    top: -15px;
+
+    font-size: 25px;
+    color: #4A4A4A;
+
+    display: flex;
+    padding: 6px;
+    background-color: #D9D9D9;
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    transition: 0.6s;
+
+    :hover {
+      filter: brightness(90%);
+    }
+  }
+
   .modal-box {
-    background-color: white;
+    position: relative;
+    background-color: #F8F9FA;
     border-radius: 5px;
-    padding: 80px 120px;
+    width: 60%;
+    height: 60%;
+
+    @keyframes zoomIn {
+      0% {
+        transform:scale(0);
+      }
+      100% {
+        transform:scale(1);
+      }
+    }
+
+    animation: zoomIn 0.5s;
   }
 
 `;

@@ -1,7 +1,12 @@
 import { Container } from './styles'
 import { BsPlusLg } from "react-icons/bs"
 
+import EventModal from '../EventModal'
+import { useState } from 'react'
+
 const EventContainer = ({children, event, ...props}) => {
+
+  const [modal, setModal] = useState(false)
 
   function parseDay(date) {
     return date.split('-')[2].substring(0,2)
@@ -28,6 +33,9 @@ const EventContainer = ({children, event, ...props}) => {
 
   return (
     <Container> 
+
+      {modal && <EventModal setModal={setModal}/>}
+
       <div className='date-box'>
         <h1> {parseDay(event.date)} </h1>
         <h3> {parseMonth(event.date)} </h3>
@@ -39,10 +47,10 @@ const EventContainer = ({children, event, ...props}) => {
           <p className='event-description'> {event.description} </p>
           <div className='info-row'>
             <p className='event-speaker'> Palestrante: <span> {event.invitedSpeakers.map(is => is.name).join(', ')} </span> </p>
-            <p className='event-online'> Remoto? <span> {event.remote ? "Sim" : "Não"} </span> </p>
+            <p className='event-online'> {event.remote ? "Evento Remoto" : "Evento Presencial"} </p>
           </div>
         </div>
-        <div className='more-info'>
+        <div className='more-info' onClick={() => setModal(true)}>
           <BsPlusLg className='plus-icon'/>
           <p> Ver Detalhes </p>
         </div>

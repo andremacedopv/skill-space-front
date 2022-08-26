@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100%;
+  gap: 10px;
 
   button{
     display: flex;
@@ -13,7 +14,7 @@ export const Container = styled.div`
     align-items: center;
     height: ${(props) => props.collapse ? "45px" : "90px"};
     width: ${(props) => props.collapse ? "45px" : "90px"};
-    background-color: #DAD8D8;
+    background-color: ${(props) => props.selected ? props.color : "#DAD8D8"} ;
 
     cursor: pointer;
   
@@ -26,7 +27,7 @@ export const Container = styled.div`
     .button-icon {
       height: ${(props) => props.collapse ? "1.6rem" : "2.5rem"};
       width: ${(props) => props.collapse ? "1.6rem" : "2.5rem"};
-      color:  ${(props) => props.color};
+      color:  ${(props) => props.selected ? "#FFFFFF" : props.color};
       transition: 0.4s;
     }
   }
@@ -41,6 +42,7 @@ export const Container = styled.div`
 
   p{
     font-family: 'Roboto Flex';
+    font-size: 15px;
     color: #747070;
     margin-bottom: 0;
     display: ${(props) => props.collapse ? "none" : "block"}

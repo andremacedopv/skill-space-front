@@ -3,36 +3,74 @@ import { Container } from './styles'
 import speakerImg from '../../assets/userImg.jpg'
 
 import {AiOutlineClose} from 'react-icons/ai'
+import {BsFillPeopleFill} from 'react-icons/bs'
 import {MdLocationPin, MdOutlineLink} from 'react-icons/md'
 
-const EventModal = ({event, setModal, ...props}) => {
+import { api } from "../../services/api"
+
+import { useEffect, useState } from "react";
+import EventSpeakerContainer from '../EventSpeakerContainer'
+
+const EventModal = ({eventId, setModal, ...props}) => {
+
+  const [event, setEvent] = useState({})
+
+  useEffect(() => {
+    api.get(`event/${eventId}`).then((response) => {
+      response.data.event.date = parseDate(response.data.event.date)
+      setEvent(response.data.event)
+    })
+  }, [])
+  console.log(event)
+
+  function parseMonth(date) {
+    const month =  date.split('-')[1]
+    switch(month){
+      case '01': return "Janeiro";
+      case '02': return "Fevereiro";
+      case '03': return "Março";
+      case '04': return "Abril";
+      case '05': return "Maio";
+      case '06': return "Junho"; 
+      case '07': return "Julho";
+      case '08': return "Agosto";
+      case '09': return "Setembro";
+      case '10': return "Outubro";
+      case '11': return "Novembro";
+      case '12': return "Dezembro";
+      default: return "-"
+    }
+  }
+
+  function parseDate(date) {
+    const day = date.split('-')[2].substring(0,2)
+    const month = parseMonth(date)
+    const year = date.split('-')[0]
+    return `${day} de ${month} de ${year}`
+  }
 
   return (
     <Container> 
       <div className="modal-box"> 
-        <AiOutlineClose class="close-button" onClick={() => {setModal(false)}}/>
-        <h1 className='modal-title'> Seminário da Inovação </h1>
-        <h3 className='modal-date'> 23 de Setembro de 2021 </h3>
-        <p className='modal-description'> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+        <AiOutlineClose className="close-button" onClick={() => {setModal(false)}}/>
+        <h1 className='modal-title'> {event.name} </h1>
+        <h3 className='modal-date'> {event.date} </h3>
+        <p className='modal-description'> {event.description} </p>
         <div className='location-info'>
           <div className='event-type'>
-            <MdLocationPin className='icon'/>
-            <p> Evento Presencial </p>
+            {event.remote ? <BsFillPeopleFill className='icon'/> : <MdLocationPin className='icon'/> }
+            <p> {event.remote ? "Evento Remoto" : "Evento Presencial"} </p>
           </div>
-          <div className='location'>
+          <a className='location' href={event.link} target="_blank">
             <MdOutlineLink className='icon'/>
-            <p> Ver no Mapa</p>
-          </div>
+            <p> {event.remote ? "Acessar Link" : "Ver no Mapa"} </p>
+          </a>
         </div>
         <p className='speaker-p'> Palestrante </p>
-        <div className='speaker-box'>
-          <img src={speakerImg} alt="user profile"></img>
-          <div className='speaker-text'>
-            <p className='speaker-name'> Pedro José </p>
-            <p className='speaker-job'> Empreendedor </p>
-            <p className='speaker-description'> Formado em Direito na UnB, lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.  </p>
-          </div>
+        <div className='speakers-container'>
+          { event.invitedSpeakers && event.invitedSpeakers.map(speaker => { return <EventSpeakerContainer speaker={speaker}/> })}
         </div>
+
       </div>
     </Container>
   )

@@ -28,7 +28,7 @@ const EventIndexPage = () => {
       year = event.date.split('-')[0]
       return (
         <>
-          <p class="events-date"> {event.date.split('-')[0]} </p>
+          <p className="events-date"> {event.date.split('-')[0]} </p>
           <EventContainer key={i} event={event}/> 
         </>
       )

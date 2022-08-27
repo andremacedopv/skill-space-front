@@ -34,7 +34,7 @@ const EventContainer = ({children, event, ...props}) => {
   return (
     <Container> 
 
-      {modal && <EventModal setModal={setModal}/>}
+      {modal && <EventModal eventId={event.id} setModal={setModal}/>}
 
       <div className='date-box'>
         <h1> {parseDay(event.date)} </h1>

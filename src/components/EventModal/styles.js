@@ -108,6 +108,8 @@ export const Container = styled.div`
         align-items: center;
         gap: 5px;
         color: #3966DC;
+        cursor: pointer;
+        text-decoration: none;
 
         p {
           font-weight: 500;
@@ -127,46 +129,11 @@ export const Container = styled.div`
       color: #5C5656;
     }
 
-    .speaker-box {
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 19px;
-      padding: 20px 10px;
-
+    .speakers-container {
       display: flex;
-      align-items: center;
-      gap: 20px;
-
-      img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 999px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      }
-
-      .speaker-text {
-        .speaker-name {
-          font-weight: 500;
-          font-size: 22px;
-          color: #282323;
-        }
-  
-        .speaker-job {
-          font-weight: 500;
-          font-size: 16px;
-          color: #5C5656;
-        }
-  
-        .speaker-description {
-          margin-top: 5px;
-          font-weight: 400;
-          font-size: 18px;
-          color: #5C5656;
-        }
-      }
-
+      flex-direction: column;
+      gap: 15px;
     }
-
   }
 
 `;

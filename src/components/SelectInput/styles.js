@@ -42,3 +42,42 @@ export const InputContainer = styled.div`
         box-sizing: border-box;
     }
 `
+
+export const customStyles = {
+    menu: base => ({
+        ...base,
+        fontFamily: 'Fira Sans',
+        fontSize: '1.2rem',
+        width: '100%',
+        margin: 0,
+        boxShadow: 'none',
+        border: '1px solid rgba(0, 0, 0, 0.21)',
+        padding: '0.5rem',
+        borderRadius: 0,
+    }),
+
+    control: base => ({
+        ...base,
+        backgroundColor: 'rgba(217, 217, 217, 0.37)',
+        color: '#6E6E6E',
+        fontFamily: 'Fira Sans',
+        fontStyle: 'normal',
+        fontWeight: 400,
+        fontSize: '1.2rem',
+        paddingBottom: '0.25rem',
+        paddingTop: '0.25rem',
+    }),
+
+    clearIndicator: base => ({
+        ...base,
+        cursor: 'pointer'
+    }),
+
+    placeholder: base => ({
+        ...base,
+    }),
+
+    dropdownIndicator: () => ({
+        cursor: 'pointer',
+    })
+}

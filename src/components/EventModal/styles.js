@@ -45,8 +45,10 @@ export const Container = styled.div`
     position: relative;
     background-color: #F8F9FA;
     border-radius: 5px;
-    width: 60%;
-    height: 60%;
+
+    padding: 20px;
+
+    width: 50%;
 
     @keyframes zoomIn {
       0% {
@@ -58,6 +60,66 @@ export const Container = styled.div`
     }
 
     animation: zoomIn 0.5s;
+
+    font-family: 'Fira Sans';
+
+    .modal-title {
+      font-weight: 500;
+      font-size: 33px;
+      color: #282323;
+    }
+
+    .modal-date {
+      font-weight: 500;
+      font-size: 16px;
+      color: #5C5656;
+    }
+
+    .modal-description{
+      font-weight: 400;
+      font-size: 18px;
+      color: #5C5656;
+      margin: 10px 0;
+    }
+
+    .location-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      .event-type {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        p {
+          font-weight: 400;
+          font-size: 18px;
+          color: #5C5656;
+        }
+
+        .icon {
+          font-size: 25px;
+        }
+      }
+
+      .location {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #3966DC;
+
+        p {
+          font-weight: 500;
+          font-size: 18px;
+        }
+
+        .icon {
+          font-size: 25px;
+        }
+      }
+    }
+
   }
 
 `;

@@ -149,7 +149,7 @@ const SignUpPage = () => {
               </div>
             </div>
             <SubmitButton onClick={() => setPage(2)} className="submit-btn">Continuar</SubmitButton>
-            <span className="sign-up-label">Já possui uma conta? <a href="/">Entre</a></span>
+            <span className="sign-up-label">Já possui uma conta? <a href="/login">Entre</a></span>
           </div>
           </> :
           <>

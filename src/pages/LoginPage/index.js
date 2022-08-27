@@ -39,7 +39,7 @@ const LoginPage = () => {
               </div>
               <a className="password-recover" href="/">Esqueci minha senha</a>
               <SubmitButton className="submit-btn">Login</SubmitButton>
-              <span className="sign-up-label">Ainda não tem uma conta? <a href="/">Cadastre-se</a></span>
+              <span className="sign-up-label">Ainda não tem uma conta? <a href="/cadastro">Cadastre-se</a></span>
             </form>
     </Container>
   )

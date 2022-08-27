@@ -34,7 +34,7 @@ export const InputContainer = styled.div`
         border: 1px solid rgba(0, 0, 0, 0.21);
         border-radius: 4px;
         width: 100%;
-        padding: 0.5rem;
+        padding: 0.625rem;
         font-family: 'Fira Sans';
         font-style: normal;
         font-weight: 400;

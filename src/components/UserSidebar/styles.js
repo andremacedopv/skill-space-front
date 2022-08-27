@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+
+    a {
+        text-decoration: none;
+    }
+
     min-height: 100vh;
-    height: 100vh;
     min-width: 16.75rem;
     width: 16.75rem;
     background-color: #DFDFDF;
@@ -25,7 +29,7 @@ export const Container = styled.div`
         padding: 0 5%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        gap: 30px;
         height: 100%;
     }
 

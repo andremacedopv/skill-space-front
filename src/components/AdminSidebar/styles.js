@@ -55,7 +55,7 @@ export const Container = styled.div`
         margin: 1.5rem;
         color: #fff;
 
-        font-size: 1.2rem;
+        font-size: 1rem;
 
         .icon-bottom {
             height: 1.7rem;

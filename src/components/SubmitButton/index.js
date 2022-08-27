@@ -1,8 +1,8 @@
 import { ButtonContainer } from './styles'
 
-const SubmitButton = ({children, format, ...props}) => {
+const SubmitButton = ({children, format, color="dark-blue", ...props}) => {
     return (
-        <ButtonContainer format={format} {...props}> {children} </ButtonContainer>
+        <ButtonContainer format={format} color={color} {...props}> {children} </ButtonContainer>
     )
 }
 

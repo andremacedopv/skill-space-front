@@ -4,18 +4,26 @@ export const ButtonContainer = styled.button`
     border: none;
     transition: 0.5s;
     width: 100%;
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     font-family: 'Fira Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 
     border-radius: 9px;
     color: white;
-    background: #03214A;
+    background: ${props => {
+        switch (props.color) {
+            case "dark-blue": return "#03214A";
+            case "light-blue": return "#004E98";
+            case "red": return "#752520";
+            case "green": return "#3B7520";
+            default: return "#03214A"
+        }
+        }};
 
     :hover {
         cursor: ${props => props.cursor || "pointer"};
-        background: #010B19;
+        filter: contrast(200%)
     }
 `;

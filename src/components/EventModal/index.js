@@ -8,6 +8,7 @@ import { api } from "../../services/api"
 
 import { useEffect, useState } from "react";
 import EventSpeakerContainer from '../EventSpeakerContainer'
+import SubmitButton from '../SubmitButton'
 
 const EventModal = ({eventId, setModal, ...props}) => {
 
@@ -60,7 +61,11 @@ const EventModal = ({eventId, setModal, ...props}) => {
         <div className='speakers-container'>
           { event.invitedSpeakers && event.invitedSpeakers.map(speaker => { return <EventSpeakerContainer speaker={speaker}/> })}
         </div>
-
+        <div className='buttons-container'>
+          <SubmitButton color="light-blue"> Tenho Interesse </SubmitButton>
+          <SubmitButton color="green"> Confirmar Presença </SubmitButton>
+          <SubmitButton color="red"> Não Tenho Interesse </SubmitButton>
+        </div>
       </div>
     </Container>
   )

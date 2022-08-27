@@ -134,6 +134,13 @@ export const Container = styled.div`
       flex-direction: column;
       gap: 15px;
     }
+
+    .buttons-container {
+      margin-top: 25px;
+      display: flex;
+      gap: 10px;
+      padding: 0 15px;
+    }
   }
 
 `;

@@ -1,7 +1,5 @@
 import { Container } from './styles'
 
-import speakerImg from '../../assets/userImg.jpg'
-
 import {AiOutlineClose} from 'react-icons/ai'
 import {BsFillPeopleFill} from 'react-icons/bs'
 import {MdLocationPin, MdOutlineLink} from 'react-icons/md'
@@ -17,37 +15,29 @@ const EventModal = ({eventId, setModal, ...props}) => {
 
   useEffect(() => {
     api.get(`event/${eventId}`).then((response) => {
-      response.data.event.date = parseDate(response.data.event.date)
+      const date = response.data.event.date
+      const day = date.split('-')[2].substring(0,2)
+      let month =  date.split('-')[1]
+      switch(month){
+        case '01': month = "Janeiro"; break;
+        case '02': month = "Fevereiro"; break;
+        case '03': month = "Março"; break;
+        case '04': month = "Abril"; break;
+        case '05': month = "Maio"; break;
+        case '06': month = "Junho"; break; 
+        case '07': month = "Julho"; break;
+        case '08': month = "Agosto"; break;
+        case '09': month = "Setembro"; break;
+        case '10': month = "Outubro"; break;
+        case '11': month = "Novembro"; break;
+        case '12': month = "Dezembro"; break;
+        default: month = "-"
+      }
+      const year = date.split('-')[0]
+      response.data.event.date = `${day} de ${month} de ${year}`
       setEvent(response.data.event)
     })
-  }, [])
-  console.log(event)
-
-  function parseMonth(date) {
-    const month =  date.split('-')[1]
-    switch(month){
-      case '01': return "Janeiro";
-      case '02': return "Fevereiro";
-      case '03': return "Março";
-      case '04': return "Abril";
-      case '05': return "Maio";
-      case '06': return "Junho"; 
-      case '07': return "Julho";
-      case '08': return "Agosto";
-      case '09': return "Setembro";
-      case '10': return "Outubro";
-      case '11': return "Novembro";
-      case '12': return "Dezembro";
-      default: return "-"
-    }
-  }
-
-  function parseDate(date) {
-    const day = date.split('-')[2].substring(0,2)
-    const month = parseMonth(date)
-    const year = date.split('-')[0]
-    return `${day} de ${month} de ${year}`
-  }
+  }, [eventId])
 
   return (
     <Container> 
@@ -61,7 +51,7 @@ const EventModal = ({eventId, setModal, ...props}) => {
             {event.remote ? <BsFillPeopleFill className='icon'/> : <MdLocationPin className='icon'/> }
             <p> {event.remote ? "Evento Remoto" : "Evento Presencial"} </p>
           </div>
-          <a className='location' href={event.link} target="_blank">
+          <a className='location' href={event.link} target="_blank" rel="noreferrer">
             <MdOutlineLink className='icon'/>
             <p> {event.remote ? "Acessar Link" : "Ver no Mapa"} </p>
           </a>

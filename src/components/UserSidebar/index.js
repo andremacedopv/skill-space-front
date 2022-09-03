@@ -40,7 +40,7 @@ export const UserSidebar = () => {
 
                 <div className='sidebar-body'>
                     <div className='sidebar-buttons-row'>
-                        <UserSidebarButton collapse={collapse} Icon={RiBallPenFill} text="Atividades" color="#980012" />
+                        <UserSidebarButton collapse={collapse} Icon={RiBallPenFill} selected={location === "/stage"} text="Atividades" color="#980012" />
                         <Link 
                             to={'/event'}>
                             <UserSidebarButton 
@@ -68,8 +68,8 @@ export const UserSidebar = () => {
                     <div className='profile'>
                         <img src={userImg} alt="user profile"></img>
                         <div className='profile-texts'>
-                            <p className='profile-name'>{user.name}</p>
-                            <p className='profile-email'>{user.email}</p>
+                            <p className='profile-name'>{user.user.name}</p>
+                            <p className='profile-email'>{user.user.email}</p>
                         </div>
                     </div>
                     :

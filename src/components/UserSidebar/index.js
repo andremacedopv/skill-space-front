@@ -40,7 +40,16 @@ export const UserSidebar = () => {
 
                 <div className='sidebar-body'>
                     <div className='sidebar-buttons-row'>
-                        <UserSidebarButton collapse={collapse} Icon={RiBallPenFill} selected={location === "/stage"} text="Atividades" color="#980012" />
+                        <Link 
+                            to={'/stage'}>
+                            <UserSidebarButton 
+                                Icon={RiBallPenFill}
+                                collapse={collapse} 
+                                selected={location === "/stage"} 
+                                text="Atividades" 
+                                color="#980012"
+                            />
+                        </Link>
                         <Link 
                             to={'/event'}>
                             <UserSidebarButton 

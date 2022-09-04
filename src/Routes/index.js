@@ -10,6 +10,7 @@ import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import UserTestPage from "../pages/UserTestPage";
 import EventIndexPage from "../pages/EventIndexPage";
+import StageIndexPage from "../pages/StageIndexPage";
 
 const Router = () => {
     return (
@@ -18,6 +19,12 @@ const Router = () => {
                 <Container>
                     <UserSidebar/>
                     <EventIndexPage />
+                </Container>
+            } />
+            <Route exact path="/stage" element={
+                <Container>
+                    <UserSidebar/>
+                    <StageIndexPage />
                 </Container>
             } />
             <Route exact path="/" element={< TestPage />} />

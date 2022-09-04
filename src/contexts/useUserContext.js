@@ -14,7 +14,7 @@ const UserProvider = ({children}) => {
 
     useEffect(() => {
         const handleCookies = async () => {
-            const userCookie = await Cookies.get('user');
+            const userCookie = Cookies.get('user');
 
             Cookies.raw = true
 
@@ -49,8 +49,8 @@ const UserProvider = ({children}) => {
             });
             console.log(response)
             if(response.data){
-                setUser({...response.data.user})
-                var encrypted = CryptoJS.AES.encrypt(JSON.stringify({...response.data.user}), process.env.REACT_APP_CRYPTO_KEY).toString();
+                setUser({...response.data})
+                var encrypted = CryptoJS.AES.encrypt(JSON.stringify({...response.data}), process.env.REACT_APP_CRYPTO_KEY).toString();
                 Cookies.set('user', encrypted, {expires: 1, sameSite: 'None', secure: true });
                 navigate('/')
                 api.defaults.headers.common['Authorization'] = response.data.token

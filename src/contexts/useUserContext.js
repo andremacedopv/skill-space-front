@@ -55,7 +55,6 @@ const UserProvider = ({children}) => {
                 Cookies.set('user', encrypted, {expires: 1, sameSite: 'None', secure: true });
                 navigate('/')
                 api.defaults.headers.common[`Authorization`] = response.data.token
-                console.log(api)
             }
         }catch(e){
             console.log(e)

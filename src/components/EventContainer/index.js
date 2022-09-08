@@ -31,8 +31,17 @@ const EventContainer = ({children, event, ...props}) => {
     }
   }
 
+  const extractEventStatus = (event) => {
+    if(event.guests) {
+      return event.guests[0].status
+    }
+    else {
+      return null
+    }
+  }
+
   return (
-    <Container> 
+    <Container guestStatus = {extractEventStatus(event)}> 
 
       {modal && <EventModal eventId={event.id} setModal={setModal}/>}
 

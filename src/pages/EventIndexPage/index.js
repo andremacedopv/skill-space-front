@@ -11,6 +11,7 @@ const EventIndexPage = () => {
 
   const [selectedTab, setSelectedTab] = useState('next-events')
   const [events, setEvents] = useState([])
+  const [invites, setInvites] = useState([])
   
   let year = ""
 
@@ -18,7 +19,13 @@ const EventIndexPage = () => {
     api.get('event').then((response) => {
       setEvents(response.data.events)
     })
+
+    api.get('event/my_invites').then((response) => {
+      setInvites(response.data.events)
+    })
   }, [])
+
+  console.log(invites)
 
   const groupEventByYear = (event, i) => {
     if (year === event.date.split('-')[0]) {
@@ -49,7 +56,11 @@ const EventIndexPage = () => {
       <section className="my-invites">
         <h2>Meus convites</h2>
         <div className="events-container">
-          {/* { events.map((event,i) => <EventContainer key={i} event={event}/>) } */}
+          { 
+            invites.map((event,i) => {
+              return <EventContainer key={i} event={event}/> 
+            }) 
+          }
         </div>
       </section>
 

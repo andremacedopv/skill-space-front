@@ -13,7 +13,15 @@ export const Container = styled.div`
 
     border-radius: 16px;
 
-    background-color: #004E98;
+    background-color: ${props => {
+      switch(props.guestStatus){
+        case "Maybe": return "#004E98";
+        case 'Confirmed': return "#3B7520";
+        case 'Declined': return "#752520";
+        default: return "#666666"
+      } 
+    }};
+
     padding: 10px;
     
     min-width: 100px;

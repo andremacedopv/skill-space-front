@@ -37,13 +37,15 @@ const EventIndexPage = () => {
       setEvents(allEvents)
       setNextEvents(futureEvents)
       setPreviousEvents(pastEvents)
+
+      setDisplayedEvents(allEvents)
     })
 
     api.get('event/my_invites').then((response) => {
       setInvites(response.data.events)
     })
 
-  }, [events])
+  }, [])
 
   const groupEventByYear = (event, i) => {
     if (year === event.date.split('-')[0]) {

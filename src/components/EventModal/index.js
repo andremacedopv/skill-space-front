@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom'
 
 import {toast} from 'react-hot-toast';
 
-const EventModal = ({eventId, setModal, ...props}) => {
+const EventModal = ({eventId, setModal, displayButtons = true, ...props}) => {
 
   const [event, setEvent] = useState({})
   const { user } = useUserContext().user;
@@ -78,11 +78,14 @@ const EventModal = ({eventId, setModal, ...props}) => {
         <div className='speakers-container'>
           { event.invitedSpeakers && event.invitedSpeakers.map(speaker => { return <EventSpeakerContainer speaker={speaker}/> })}
         </div>
-        <div className='buttons-container'>
-          <SubmitButton color="light-blue" onClick={() => updateGuestStatus("Maybe")}> Tenho Interesse </SubmitButton>
-          <SubmitButton color="green" onClick={() => updateGuestStatus("Confirmed")}> Confirmar Presença </SubmitButton>
-          <SubmitButton color="red" onClick={() => updateGuestStatus("Declined")}> Não Tenho Interesse </SubmitButton>
-        </div>
+        {
+          displayButtons && 
+          <div className='buttons-container'>
+            <SubmitButton color="light-blue" onClick={() => updateGuestStatus("Maybe")}> Tenho Interesse </SubmitButton>
+            <SubmitButton color="green" onClick={() => updateGuestStatus("Confirmed")}> Confirmar Presença </SubmitButton>
+            <SubmitButton color="red" onClick={() => updateGuestStatus("Declined")}> Não Tenho Interesse </SubmitButton>
+          </div>
+        }
       </div>
     </Container>
   )

@@ -4,7 +4,7 @@ import { BsPlusLg } from "react-icons/bs"
 import EventModal from '../EventModal'
 import { useState } from 'react'
 
-const EventContainer = ({children, event, ...props}) => {
+const EventContainer = ({children, event, displayButtons = true, ...props}) => {
 
   const [modal, setModal] = useState(false)
 
@@ -43,7 +43,7 @@ const EventContainer = ({children, event, ...props}) => {
   return (
     <Container guestStatus = {extractEventStatus(event)}> 
 
-      {modal && <EventModal eventId={event.id} setModal={setModal}/>}
+      {modal && <EventModal eventId={event.id} setModal={setModal} displayButtons={displayButtons}/>}
 
       <div className='date-box'>
         <h1> {parseDay(event.date)} </h1>

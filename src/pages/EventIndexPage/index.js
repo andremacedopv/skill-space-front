@@ -27,14 +27,14 @@ const EventIndexPage = () => {
 
   const groupEventByYear = (event, i) => {
     if (year === event.date.split('-')[0]) {
-      return ( <EventContainer key={i} event={event}/> )
+      return ( <EventContainer displayButtons={false} key={i} event={event}/> )
     }
     else {
       year = event.date.split('-')[0]
       return (
         <>
           <p className="events-date"> {event.date.split('-')[0]} </p>
-          <EventContainer key={i} event={event}/> 
+          <EventContainer displayButtons={false} key={i} event={event}/> 
         </>
       )
     }

@@ -35,11 +35,11 @@ const EventContainer = ({children, event, displayButtons = true, ...props}) => {
   }
 
   const extractEventStatus = (event) => {
-    if(event.guests) {
-      return event.guests.filter(guest => {return guest.userId === user.id})[0].status
+    if(event.guests.length === 0 ) {
+      return null
     }
     else {
-      return null
+      return event.guests.filter(guest => {return guest.userId === user.id})[0].status
     }
   }
 

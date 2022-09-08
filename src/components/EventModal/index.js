@@ -13,11 +13,13 @@ import SubmitButton from '../SubmitButton'
 import { useUserContext } from "../../contexts/useUserContext";
 
 import {toast} from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom'
 
 const EventModal = ({eventId, setModal, displayButtons = true, ...props}) => {
 
   const [event, setEvent] = useState({})
   const { user } = useUserContext().user;
+  const navigate = useNavigate()
 
   useEffect(() => {
     api.get(`event/${eventId}`).then((response) => {
@@ -50,7 +52,7 @@ const EventModal = ({eventId, setModal, displayButtons = true, ...props}) => {
       status: status
     })
     .then(() => {
-      toast.success('Estado da participação no evento alterado')
+      navigate(0)
     })
   }
 

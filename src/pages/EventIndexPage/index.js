@@ -25,8 +25,6 @@ const EventIndexPage = () => {
     })
   }, [])
 
-  console.log(invites)
-
   const groupEventByYear = (event, i) => {
     if (year === event.date.split('-')[0]) {
       return ( <EventContainer key={i} event={event}/> )

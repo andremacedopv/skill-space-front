@@ -4,9 +4,12 @@ import { BsPlusLg } from "react-icons/bs"
 import EventModal from '../EventModal'
 import { useState } from 'react'
 
+import { useUserContext } from "../../contexts/useUserContext";
+
 const EventContainer = ({children, event, displayButtons = true, ...props}) => {
 
   const [modal, setModal] = useState(false)
+  const { user } = useUserContext().user;
 
   function parseDay(date) {
     return date.split('-')[2].substring(0,2)
@@ -33,7 +36,7 @@ const EventContainer = ({children, event, displayButtons = true, ...props}) => {
 
   const extractEventStatus = (event) => {
     if(event.guests) {
-      return event.guests[0].status
+      return event.guests.filter(guest => {return guest.userId === user.id})[0].status
     }
     else {
       return null

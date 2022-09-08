@@ -11,7 +11,6 @@ import EventSpeakerContainer from '../EventSpeakerContainer'
 import SubmitButton from '../SubmitButton'
 
 import { useUserContext } from "../../contexts/useUserContext";
-import { useNavigate } from 'react-router-dom'
 
 import {toast} from 'react-hot-toast';
 
@@ -19,8 +18,6 @@ const EventModal = ({eventId, setModal, displayButtons = true, ...props}) => {
 
   const [event, setEvent] = useState({})
   const { user } = useUserContext().user;
-  const navigate = useNavigate();
-  
 
   useEffect(() => {
     api.get(`event/${eventId}`).then((response) => {

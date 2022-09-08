@@ -1,19 +1,18 @@
 import { Container } from './styles'
 
+import { useEffect, useState } from "react";
+import { useUserContext } from "../../contexts/useUserContext";
+import { useNavigate } from 'react-router-dom'
+
 import {AiOutlineClose} from 'react-icons/ai'
 import {BsFillPeopleFill} from 'react-icons/bs'
 import {MdLocationPin, MdOutlineLink} from 'react-icons/md'
 
 import { api } from "../../services/api"
 
-import { useEffect, useState } from "react";
 import EventSpeakerContainer from '../EventSpeakerContainer'
 import SubmitButton from '../SubmitButton'
 
-import { useUserContext } from "../../contexts/useUserContext";
-
-import {toast} from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom'
 
 const EventModal = ({eventId, setModal, displayButtons = true, ...props}) => {
 

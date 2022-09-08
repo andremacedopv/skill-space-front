@@ -39,7 +39,8 @@ const EventContainer = ({children, event, displayButtons = true, ...props}) => {
       return null
     }
     else {
-      return event.guests.filter(guest => {return guest.userId === user.id})[0].status
+      const userGuest = event.guests.filter(guest => {return guest.userId === user.id})
+      return userGuest.length === 0 ? null : userGuest[0].status
     }
   }
 

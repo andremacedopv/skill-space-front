@@ -9,21 +9,41 @@ import { useState, useEffect } from "react";
 
 const EventIndexPage = () => {
 
-  const [selectedTab, setSelectedTab] = useState('next-events')
+  const [selectedTab, setSelectedTab] = useState('all-events')
   const [events, setEvents] = useState([])
+  const [nextEvents, setNextEvents] = useState([])
+  const [previousEvents, setPreviousEvents] = useState([])
+  const [displayedEvents, setDisplayedEvents] = useState([])
   const [invites, setInvites] = useState([])
   
   let year = ""
 
   useEffect(() => {
     api.get('event').then((response) => {
-      setEvents(response.data.events)
+
+      const date = new Date()
+      const currentDate = date.getFullYear() + "-" + String(date.getDate()).padStart(2, '0') + "-" + String(date.getMonth() + 1).padStart(2, '0')
+
+      const allEvents = response.data.events
+      const futureEvents = allEvents.filter(event => {
+        const eventDate = event.date.substring(0,10)
+        return eventDate >= currentDate
+      })
+      const pastEvents = allEvents.filter(event => {
+        const eventDate = event.date.substring(0,10)
+        return eventDate < currentDate
+      })
+
+      setEvents(allEvents)
+      setNextEvents(futureEvents)
+      setPreviousEvents(pastEvents)
     })
 
     api.get('event/my_invites').then((response) => {
       setInvites(response.data.events)
     })
-  }, [])
+
+  }, [events])
 
   const groupEventByYear = (event, i) => {
     if (year === event.date.split('-')[0]) {
@@ -64,17 +84,24 @@ const EventIndexPage = () => {
 
       <section className="my-events">
         <div className="event-tabs"> 
-          <h2 className={selectedTab === "next-events" ? "selected" : ""} onClick={() => setSelectedTab("next-events")}>Próximos Eventos</h2>
+          <h2 className={selectedTab === "all-events" ? "selected" : ""} onClick={() => {
+            setSelectedTab("all-events")
+            setDisplayedEvents(events)
+            }}>Todos os Eventos</h2>
           <h2> | </h2>
-          <h2 className={selectedTab === "my-presences" ? "selected" : ""} onClick={() => setSelectedTab("my-presences")}>Minhas Presenças</h2>
+          <h2 className={selectedTab === "next-events" ? "selected" : ""} onClick={() => {
+            setSelectedTab("next-events")
+            setDisplayedEvents(nextEvents)
+            }}>Próximos Eventos</h2>
           <h2> | </h2>
-          <h2 className={selectedTab === "past-events" ? "selected" : ""} onClick={() => setSelectedTab("past-events")}>Eventos Passados</h2>
+          <h2 className={selectedTab === "past-events" ? "selected" : ""} onClick={() => {
+            setSelectedTab("past-events")
+            setDisplayedEvents(previousEvents)
+            }}>Eventos Passados</h2>
         </div>
         <div className="events-container">
           { 
-            events.map((event,i) => {
-              return(groupEventByYear(event, i))
-            }) 
+            displayedEvents.map((event,i) => {return(groupEventByYear(event, i))}) 
           }
         </div>
       </section>

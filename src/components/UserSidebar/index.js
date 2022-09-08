@@ -24,7 +24,6 @@ export const UserSidebar = () => {
     const [collapse, setCollapse] = useState(false);
 
     const location = useLocation().pathname
-    console.log(location)
 
     const collapseButton = () => {
         setCollapse(!collapse);

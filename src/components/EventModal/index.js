@@ -10,9 +10,15 @@ import { useEffect, useState } from "react";
 import EventSpeakerContainer from '../EventSpeakerContainer'
 import SubmitButton from '../SubmitButton'
 
+import { useUserContext } from "../../contexts/useUserContext";
+import { useNavigate } from 'react-router-dom'
+
 const EventModal = ({eventId, setModal, ...props}) => {
 
   const [event, setEvent] = useState({})
+  const { user } = useUserContext().user;
+  const navigate = useNavigate();
+  
 
   useEffect(() => {
     api.get(`event/${eventId}`).then((response) => {
@@ -40,6 +46,13 @@ const EventModal = ({eventId, setModal, ...props}) => {
     })
   }, [eventId])
 
+  const updateGuestStatus = (status) => {
+    api.put(`/event/${eventId}/guest/update/${user.id}`, {
+      status: status
+    })
+    .then(() => navigate(0))
+  }
+
   return (
     <Container> 
       <div className="modal-box"> 
@@ -62,9 +75,9 @@ const EventModal = ({eventId, setModal, ...props}) => {
           { event.invitedSpeakers && event.invitedSpeakers.map(speaker => { return <EventSpeakerContainer speaker={speaker}/> })}
         </div>
         <div className='buttons-container'>
-          <SubmitButton color="light-blue"> Tenho Interesse </SubmitButton>
-          <SubmitButton color="green"> Confirmar Presença </SubmitButton>
-          <SubmitButton color="red"> Não Tenho Interesse </SubmitButton>
+          <SubmitButton color="light-blue" onClick={() => updateGuestStatus("Maybe")}> Tenho Interesse </SubmitButton>
+          <SubmitButton color="green" onClick={() => updateGuestStatus("Confirmed")}> Confirmar Presença </SubmitButton>
+          <SubmitButton color="red" onClick={() => updateGuestStatus("Declined")}> Não Tenho Interesse </SubmitButton>
         </div>
       </div>
     </Container>

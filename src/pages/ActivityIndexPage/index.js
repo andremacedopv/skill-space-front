@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import {api} from "../../services/api";
 import SearchInput from "../../components/SearchInput";
 import StageProgress from "../../components/StageProgress";
-import { FaLock, FaAngleDown, FaAngleUp, FaExclamation } from "react-icons/fa";
+import { FaLock, FaLockOpen, FaAngleDown, FaAngleUp, FaExclamation } from "react-icons/fa";
 import SubmitButton from "../../components/SubmitButton";
 import { Tooltip } from '@mui/material';
 
@@ -22,9 +22,10 @@ const ActivityIndexPage = () => {
   const [overall, setOverall] = useState(0)
   const [expandIndex, setExpandIndex] = useState(0)
   const [locked, setLocked] = useState(false)
+  const [hasStageUser, setHasStageUser] = useState(false)
   
-  useEffect(() => {
-    api.get(`stage/my/${id}`).then((response) => {
+  const fetchStage = (stageId) => {
+    api.get(`stage/my/${stageId}`).then((response) => {
       setStage(response.data.stage)
       setActivities(response.data.stage.activities)
       setCompleted(response.data.completed)
@@ -32,8 +33,13 @@ const ActivityIndexPage = () => {
       setOverall(response.data.overall)
       setActivitiesFilter(response.data.stage.activities)
       setLocked(response.data.stage.locked)
+      setHasStageUser(response.data.stage.stageUsers?.length > 0 ? true : false)
       console.log(response.data)
     })
+  }
+
+  useEffect(() => {
+    fetchStage(id)
   }, [id])
   
   const [activitiesFilter, setActivitiesFilter] = useState(activities)
@@ -41,6 +47,16 @@ const ActivityIndexPage = () => {
   const handleSearch = (value) => {
     const filteredActivities = activities.filter(activity => activity.name.toLowerCase().includes(value.toLowerCase()))
     setActivitiesFilter(filteredActivities)
+  }
+
+  const handleStart = (e) => {
+    e.preventDefault()
+    api.post(`stage/start/${id}`).then((response) => {
+      fetchStage(id)
+      navigate(`/stage/${id}`)
+    }).catch((error) => {
+      alert('Erro ao iniciar estágio')
+    })
   }
 
   const getActivityType = (type) => {
@@ -138,7 +154,7 @@ const ActivityIndexPage = () => {
         </div>
       </section>
 
-      {!locked && 
+      {!locked && hasStageUser && 
       <section className="activities-section">
         <div className="activities-tabs"> 
           <span className={selectedTab === "all" ? "selected" : ""} onClick={() => handleTabChange("all")}>Todas</span>
@@ -208,9 +224,17 @@ const ActivityIndexPage = () => {
           </tbody>
         </table>
       </section>
-    }
+      }
 
-    { locked &&
+      {!locked && !hasStageUser &&
+      <section className="not-started-section">
+        <h3>Estágio Liberado! <FaLockOpen /></h3>
+        <span className="subtext-locked">Comece agora mesmo as atividades deste estágio.</span>
+        <div className="start-btn"><SubmitButton onClick={(e) => handleStart(e)}>Inicar Estágio</SubmitButton></div>
+      </section>
+      }
+
+      { locked &&
       <section className="locked">
         <h3>Estágio Bloquado <FaLock /></h3>
         <span className="subtext-locked">Complete os estágios abaixo para desbloquear</span>
@@ -222,7 +246,7 @@ const ActivityIndexPage = () => {
           ))}
         </div>
       </section>
-    }
+      }
     </Container>
   )
 }

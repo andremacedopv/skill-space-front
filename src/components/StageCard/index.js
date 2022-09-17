@@ -1,7 +1,10 @@
 import { Container } from './styles'
 import { FaInfoCircle, FaLock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-const StageCard = ({name, completed, total, locked}) => {
+const StageCard = ({name, completed, total, locked, id}) => {
+
+    const navigate = useNavigate();
 
     const getPercentage = () => {
         if (total === 0) {
@@ -21,7 +24,7 @@ const StageCard = ({name, completed, total, locked}) => {
     }
 
     return (
-        <Container status={getStatus()}>
+        <Container status={getStatus()} onClick={() => navigate(`/stage/${id}`)}>
             <div className='icon-area'>
                 {locked && <FaLock className='lock' />}
                 <FaInfoCircle />

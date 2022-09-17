@@ -99,7 +99,13 @@ const StageIndexPage = () => {
           <SearchInput label="Buscar" value={search} onChange={(e) => {setSearch(e.target.value); handleSearch(e.target.value)}} />
         </div>
         <div className="stages-container">
-          { stagesFilter.map(stage => <StageCard key={stage.id} name={stage.name} locked={stage.locked} completed={stage.activitiesCompleted} total={stage.activitiesTotal} />) }
+          { stagesFilter.map(stage => <StageCard 
+            key={stage.id} 
+            name={stage.name} 
+            locked={stage.locked} 
+            completed={stage.activitiesCompleted} 
+            total={stage.activitiesTotal} 
+            id={stage.id}/>) }
         </div>
       </section>
     </Container>

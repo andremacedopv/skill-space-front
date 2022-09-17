@@ -106,7 +106,7 @@ export const Container = styled.div`
             margin-top: 0.2rem;
             font-weight: 400;
             color: #474747;
-            font-size: 1.2rem;
+            font-size: 1rem;
             text-align: center;
             max-width: 55%;
 

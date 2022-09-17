@@ -24,7 +24,7 @@ export const InputContainer = styled.div`
         font-family: 'Fira Sans';
         font-style: normal;
         font-weight: 400;
-        font-size: 1.2rem;
+        font-size: 1rem;
         box-sizing: border-box;
         display: flex;
         color: #646363;

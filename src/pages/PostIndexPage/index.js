@@ -1,13 +1,16 @@
 import { Container } from "./styles";
 import { useUserContext } from "../../contexts/useUserContext";
 import { useState } from "react";
+import PostContainer from "../../components/PostContainer";
 
 const PostIndexPage = () => {
 
 
   return (
     <Container>
-      <p> Hello! </p>
+      <section className="posts-section">
+        <PostContainer/>
+      </section>
     </Container>
   )
 }

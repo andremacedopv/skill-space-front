@@ -6,7 +6,7 @@ const EventSpeakerContainer = ({speaker, ...props}) => {
 
   return (
     <Container> 
-      <img src={speakerImg} alt="user profile"></img>
+      <img src={speakerImg}></img>
       <div className='speaker-text'>
         <p className='speaker-name'> {speaker.name} </p>
         <p className='speaker-job'> {speaker.job} </p>

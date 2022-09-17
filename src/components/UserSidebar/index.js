@@ -62,7 +62,16 @@ export const UserSidebar = () => {
                         
                     </div>
                     <div className='sidebar-buttons-row'>
-                        <UserSidebarButton collapse={collapse} Icon={FaHashtag} text="Postagens" color="#830098" />
+                        <Link 
+                            to={'/post'}>
+                            <UserSidebarButton 
+                                Icon={FaHashtag}
+                                collapse={collapse} 
+                                selected={location.startsWith("/post")} 
+                                text="Postagens" 
+                                color="#830098"
+                            />
+                        </Link>
                         <UserSidebarButton collapse={collapse} Icon={BsFillChatDotsFill} text="Mensagens" color="#1E9800" />
                     </div>
                     <div className='sidebar-buttons-row'>

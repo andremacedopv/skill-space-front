@@ -1,11 +1,11 @@
 import { Container } from './styles'
 
-const StageProgress = ({total, completed, started}) => {
+const StageProgress = ({activitiesIndex, total, completed, started}) => {
     return (
         <Container completed={completed} started={started}>
             <div className="progress">
                 <div className="progress-info">
-                <span>Progresso no curso:</span>
+                <span>{activitiesIndex? "Progresso no estágio:" : "Progresso no curso:"}</span>
                 <span>{total}%</span>
             </div>
             <div className="progress-bar">

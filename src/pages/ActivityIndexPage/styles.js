@@ -82,6 +82,31 @@ export const Container = styled.div`
     }
   }
 
+  section.completed-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+    h3 {
+      font-size: 2rem;
+      color: #333333;
+    }
+
+    .subtext-locked{
+      color: #666666;
+      font-size: 1.2rem;
+      margin-top: 0.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .start-btn {
+      max-width: 30rem;
+    }
+  }
+
   section.not-started-section {
     display: flex;
     flex-direction: column;

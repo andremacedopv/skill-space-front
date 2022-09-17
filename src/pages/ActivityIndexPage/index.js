@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import {api} from "../../services/api";
 import SearchInput from "../../components/SearchInput";
@@ -23,8 +23,18 @@ const ActivityIndexPage = () => {
   const [expandIndex, setExpandIndex] = useState(0)
   const [locked, setLocked] = useState(false)
   const [hasStageUser, setHasStageUser] = useState(false)
+  const [stageCompleted, setStageCompleted] = useState(false)
   
-  const fetchStage = (stageId) => {
+  const verifyCompletion = useCallback((stageArr) => {
+    const completedActivities = stageArr.activities.filter(activity => activity.mandatory === true && activity.status !== "completed")
+    if (completedActivities.length === 0) {
+      setStageCompleted(true)
+    } else {
+      setStageCompleted(false)
+    }
+  }, []);
+
+  const fetchStage = useCallback((stageId) => {
     api.get(`stage/my/${stageId}`).then((response) => {
       setStage(response.data.stage)
       setActivities(response.data.stage.activities)
@@ -34,13 +44,14 @@ const ActivityIndexPage = () => {
       setActivitiesFilter(response.data.stage.activities)
       setLocked(response.data.stage.locked)
       setHasStageUser(response.data.stage.stageUsers?.length > 0 ? true : false)
+      verifyCompletion(response.data.stage)
       console.log(response.data)
     })
-  }
+  }, [verifyCompletion]);
 
   useEffect(() => {
     fetchStage(id)
-  }, [id])
+  }, [id, fetchStage])
   
   const [activitiesFilter, setActivitiesFilter] = useState(activities)
 
@@ -56,6 +67,16 @@ const ActivityIndexPage = () => {
       navigate(`/stage/${id}`)
     }).catch((error) => {
       alert('Erro ao iniciar estágio')
+    })
+  }
+
+  const handleFinish = (e) => {
+    e.preventDefault()
+    api.post(`stage/finish/${id}`).then((response) => {
+      fetchStage(id)
+      navigate(`/stage/${id}`)
+    }).catch((error) => {
+      alert('Erro ao finalizar estágio')
     })
   }
 
@@ -128,7 +149,7 @@ const ActivityIndexPage = () => {
           <h1>Atividades</h1>
           <h2>{stage.name}</h2>
         </div>
-        <StageProgress total={overall} completed={completed} started={started} />
+        <StageProgress activitiesIndex={true} total={overall} completed={completed} started={started} />
       </section>
 
       <section className="info-area">
@@ -153,6 +174,18 @@ const ActivityIndexPage = () => {
           <span className="info-value">{getAnalysis()}</span>
         </div>
       </section>
+
+      {!locked && hasStageUser && stageCompleted && 
+      <section className="completed-section">
+        <h3>Estágio Completo!</h3>
+        <span className="subtext-locked">
+          {"Você completou todas as atividades obrigtórias desse estágio." + ((stage.status === "completed") ? "" : " Finalize-o agora mesmo!")}
+        </span>
+        {stage.status !== "completed" &&
+          <div className="start-btn"><SubmitButton onClick={(e) => handleFinish(e)}>Finalizar Estágio</SubmitButton></div>
+        }
+      </section>
+      }
 
       {!locked && hasStageUser && 
       <section className="activities-section">

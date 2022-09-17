@@ -45,7 +45,6 @@ const ActivityIndexPage = () => {
       setLocked(response.data.stage.locked)
       setHasStageUser(response.data.stage.stageUsers?.length > 0 ? true : false)
       verifyCompletion(response.data.stage)
-      console.log(response.data)
     })
   }, [verifyCompletion]);
 
@@ -221,7 +220,7 @@ const ActivityIndexPage = () => {
                 <td className="table-item">{getActivityType(activity.activityType.name)}</td>
                 <td className="table-item">
                   <div className="category">
-                    {activity.category.name}
+                    {activity.category ? activity.category.name : ""}
                   </div>
                 </td>
                 <td className="table-item">{getActivityStatus(activity.status)}</td>
@@ -263,9 +262,10 @@ const ActivityIndexPage = () => {
       <section className="not-started-section">
         <h3>Estágio Liberado! <FaLockOpen /></h3>
         <span className="subtext-locked">Comece agora mesmo as atividades deste estágio.</span>
-        <div className="start-btn"><SubmitButton onClick={(e) => handleStart(e)}>Inicar Estágio</SubmitButton></div>
+        <div className="start-btn"><SubmitButton onClick={(e) => handleStart(e)}>Iniciar Estágio</SubmitButton></div>
       </section>
       }
+
 
       { locked &&
       <section className="locked">

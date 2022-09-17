@@ -62,10 +62,15 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    .stages-tabs::-webkit-scrollbar {
+      display: none;
+    }
     .stages-tabs {
       display: flex;
       margin-bottom: 1rem;
       overflow: scroll;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
       
       span {
         font-family: 'Roboto Flex';

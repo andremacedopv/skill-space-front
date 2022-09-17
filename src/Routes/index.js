@@ -34,8 +34,8 @@ const Router = () => {
                     <ActivityIndexPage />
                 </Container>
             } />
-            <Route exact path="/" element={< TestPage />} />
-            <Route exact path="/user" element={< UserTestPage />} />
+            <Route exact path="/" element={< UserTestPage />} />
+            <Route exact path="/test" element={< TestPage />} />
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/cadastro" element={<SignUpPage />} />
         </Routes>

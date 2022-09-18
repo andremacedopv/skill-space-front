@@ -10,6 +10,8 @@ const PostIndexPage = () => {
     <Container>
       <section className="posts-section">
         <PostContainer/>
+        <PostContainer/>
+        <PostContainer/>
       </section>
     </Container>
   )

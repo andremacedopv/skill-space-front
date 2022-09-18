@@ -4,16 +4,24 @@ import { useState, useEffect } from "react";
 
 import PostContainer from "../../components/PostContainer";
 import SearchInput from "../../components/SearchInput";
+import SubmitButton from "../../components/SubmitButton"
 
 import { api } from "../../services/api"
 
+import { BsPlusLg } from "react-icons/bs"
+import { CgClose } from "react-icons/cg"
 import { VscExpandAll } from "react-icons/vsc"
+
+
 
 const PostIndexPage = () => {
 
   const [posts, setPosts] = useState([])
   const [tags, setTags] = useState([])
+  const [togglePostCreate, setTogglePostCreate] = useState(false)
   const [search, setSearch] = useState('')
+
+  const [postDescription, setPostDescription] = useState([])
 
   useEffect(() => {
     api.get('feed').then((response) => {
@@ -51,11 +59,30 @@ const PostIndexPage = () => {
         </div>
       </section>
 
+      {
+        togglePostCreate && 
+        <section className="create-post">
+          <h2> Nova Postagem </h2>
+          <textarea 
+            className="description-input"
+            rows="6"
+            placeholder="Digite sua mensagem" 
+            value={postDescription} 
+            onChange={e => {setPostDescription(e.target.value)}}>
+          </textarea>
+          <SubmitButton> Postar </SubmitButton>
+        </section>
+      }
+
       <section className="posts-section">
         {posts.map(post => {
           return <PostContainer post={post}/>
         })}
       </section>
+
+      <button className="toggle-create" onClick={() => setTogglePostCreate(!togglePostCreate)}>
+        {togglePostCreate ?  <CgClose/> : <BsPlusLg/>}
+      </button>
 
     </Container>
   )

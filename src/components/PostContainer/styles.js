@@ -40,6 +40,15 @@ export const Container = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 4vh 2vw;
 
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .post-name {
+      font-weight: 500;
+      font-size: 21px;
+    }
+
     .post-description {
       font-style: normal;
       font-weight: 400;

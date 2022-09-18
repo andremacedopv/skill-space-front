@@ -20,6 +20,7 @@ const PostContainer = ({children, post, ...props}) => {
       </div>
 
       <div className='post-info'>
+        <p className='post-name'> {post.name} </p>
         <p className='post-description'> {post.description} </p>
       </div>
 

@@ -78,9 +78,71 @@ export const Container = styled.div`
     }
   }
 
+  section.create-post{
+    transition: height 400ms linear;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 4vh 2vw;
+
+    margin-bottom: 3vh;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    h2 {
+      font-family: 'Fira Sans';
+      font-weight: 400;
+      font-size: 22px;
+      color: #282424;
+
+      padding-bottom: 5px;
+      border-bottom: 1px solid #808080;
+    }
+
+    .description-input{
+      font-weight: 400;
+      font-size: 17px;
+      font-family: 'Roboto Flex';
+      padding: 15px 10px;
+      border: none;
+      resize: none;
+
+      border-bottom: 1px solid #808080;
+    }
+
+  }
+
   section.posts-section {
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  button.toggle-create {
+    display: flex;
+    align-items: center;
+
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    border: none;
+    border-radius: 150px;
+    background-color: #004E98;
+    color: white;
+
+    padding: 15px;
+
+    cursor: pointer;
+    opacity: 0.4;
+    transition: 0.5s;
+
+    font-size: 30px;
+
+    :hover {
+      opacity: 0.8;
+    }
   }
 `;

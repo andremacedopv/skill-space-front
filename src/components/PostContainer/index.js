@@ -4,10 +4,9 @@ import { useState } from 'react'
 import { useUserContext } from "../../contexts/useUserContext";
 import {AiOutlineComment} from 'react-icons/ai'
 import {MdOutlineAddReaction} from 'react-icons/md'
+import TagArrow from '../TagArrow';
 
 const PostContainer = ({children, post, ...props}) => {
-
-  console.log(post)
   return (
     <Container> 
       <div className='author-info'>
@@ -15,7 +14,7 @@ const PostContainer = ({children, post, ...props}) => {
         <p className='author-name'> {post.user.name} </p>
         <div className='tags'>
           {post.tags.map(tag => {
-            return <div className='tag'> {tag.name} </div>
+            return <TagArrow name={tag.name}/>
           } )}
         </div>
       </div>

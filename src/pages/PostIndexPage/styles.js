@@ -27,7 +27,7 @@ export const Container = styled.div`
   section.filters{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     margin-bottom: 5vh;
 
     h2 {
@@ -46,10 +46,16 @@ export const Container = styled.div`
         gap: 10px;
 
         .tag {
+          cursor: pointer;
           background-color: #004E98;
           padding: 3px 40px;
           color: white;
           border-radius: 15px;
+          transition: 0.5s;
+
+          :hover {
+            filter: contrast(200%)
+          }
         }
       }
 
@@ -57,6 +63,13 @@ export const Container = styled.div`
         display: flex;
         gap: 3px;
         align-items: center;
+
+        cursor: pointer;
+        transition: 0.5s;
+
+        :hover {
+          filter: contrast(200%)
+        }
 
         .icon {
           font-size: 25px;

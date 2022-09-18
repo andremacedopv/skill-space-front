@@ -5,21 +5,23 @@ import { useUserContext } from "../../contexts/useUserContext";
 import {AiOutlineComment} from 'react-icons/ai'
 import {MdOutlineAddReaction} from 'react-icons/md'
 
-const PostContainer = ({children, event, ...props}) => {
+const PostContainer = ({children, post, ...props}) => {
 
+  console.log(post)
   return (
     <Container> 
       <div className='author-info'>
       <img src={userImg}></img>
-        <p className='author-name'> José Fulano </p>
+        <p className='author-name'> {post.user.name} </p>
         <div className='tags'>
-          <div className='tag'> Tecnologia </div>
-          <div className='tag'> Filosofia </div>
+          {post.tags.map(tag => {
+            return <div className='tag'> {tag.name} </div>
+          } )}
         </div>
       </div>
 
       <div className='post-info'>
-        <p className='post-description'> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+        <p className='post-description'> {post.description} </p>
       </div>
 
       <div className='buttons'>

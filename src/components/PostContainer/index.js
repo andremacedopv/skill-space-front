@@ -1,7 +1,5 @@
 import { Container } from './styles'
 import userImg from '../../assets/userImg.jpg'
-import { useState } from 'react'
-import { useUserContext } from "../../contexts/useUserContext";
 import {AiOutlineComment} from 'react-icons/ai'
 import {MdOutlineAddReaction} from 'react-icons/md'
 import TagArrow from '../TagArrow';
@@ -10,17 +8,17 @@ const PostContainer = ({children, post, ...props}) => {
   return (
     <Container> 
       <div className='author-info'>
-      <img src={userImg}></img>
+      <img src={userImg} alt={`Author`}></img>
         <p className='author-name'> {post.user.name} </p>
         <div className='tags'>
-          {post.tags.map(tag => {
-            return <TagArrow name={tag.name}/>
+          {post.tags.map((tag, i) => {
+            return <TagArrow key={i} name={tag.name}/>
           } )}
         </div>
       </div>
 
       <div className='post-info'>
-        <p className='post-name'> {post.name} </p>
+        {post.name && <p className='post-name'> {post.name} </p>}
         <p className='post-description'> {post.description} </p>
       </div>
 

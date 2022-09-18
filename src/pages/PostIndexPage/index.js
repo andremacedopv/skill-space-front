@@ -1,6 +1,6 @@
 import { Container } from "./styles";
-import { useUserContext } from "../../contexts/useUserContext";
 import { useState, useEffect } from "react";
+import Select from 'react-select'
 
 import PostContainer from "../../components/PostContainer";
 import SearchInput from "../../components/SearchInput";
@@ -21,7 +21,9 @@ const PostIndexPage = () => {
   const [search, setSearch] = useState('')
   const [reload, setReload] = useState(false)
 
-  const [postDescription, setPostDescription] = useState([])
+  const [postDescription, setPostDescription] = useState("")
+  const [postName, setPostName] = useState("")
+  const [postTags, setPostTags] = useState([])
 
   useEffect(() => {
     api.get('feed').then((response) => {
@@ -33,10 +35,15 @@ const PostIndexPage = () => {
   }, [reload])
 
   const handleCreatePost = () => {
+
+    if (postDescription === "") {
+      return toast.error(`Insira um texto pra criar uma postagem!`)
+    }
+
     api.post('post/create', {
-      name: "",
+      name: postName,
       description: postDescription,
-      tags: []
+      tags: postTags.map(postTag => postTag.value)
     }).then((response) => {
       toast.success("Postagem criada com sucesso")
       setReload(!reload)
@@ -44,6 +51,8 @@ const PostIndexPage = () => {
       toast.error(`Um erro ocorreu: ${e}`)
     })
     setPostDescription("")
+    setPostName("")
+    setPostTags([])
     setTogglePostCreate(false)
   }
 
@@ -63,8 +72,8 @@ const PostIndexPage = () => {
         <h2>Filtrar por Tag</h2>
         <div className="tags-row">
           <div className="tags">
-            {tags.map(tag => {
-              return <p className="tag">{tag.name}</p>
+            {tags.map((tag, i) => {
+              return <p key={i} className="tag">{tag.name}</p>
             })}
           </div>
           <div className="see-all">
@@ -78,20 +87,36 @@ const PostIndexPage = () => {
         togglePostCreate && 
         <section className="create-post">
           <h2> Nova Postagem </h2>
+
+          <input 
+            className="name-input"
+            placeholder="Dê um título à sua postagem" 
+            value={postName} 
+            onChange={e => {setPostName(e.target.value)}}>
+          </input>
+
           <textarea 
             className="description-input"
             rows="6"
-            placeholder="Digite sua mensagem" 
+            placeholder="Digite o texto da postagem" 
             value={postDescription} 
             onChange={e => {setPostDescription(e.target.value)}}>
           </textarea>
+
+          <Select 
+            isMulti={true} 
+            options={tags.map(tag => {return {value: tag.id, label: tag.name}})}
+            onChange={(e) => setPostTags(e)}
+            placeholder="Adicionar Tags"
+          />
+
           <SubmitButton onClick={handleCreatePost}> Postar </SubmitButton>
         </section>
       }
 
       <section className="posts-section">
-        {posts.map(post => {
-          return <PostContainer post={post}/>
+        {posts.map((post, i) => {
+          return <PostContainer key={i} post={post}/>
         })}
       </section>
 

@@ -101,15 +101,17 @@ export const Container = styled.div`
       border-bottom: 1px solid #808080;
     }
 
-    .description-input{
+    input, textarea {
       font-weight: 400;
       font-size: 17px;
       font-family: 'Roboto Flex';
       padding: 15px 10px;
       border: none;
-      resize: none;
-
       border-bottom: 1px solid #808080;
+    }
+
+    .description-input{
+      resize: none;
     }
 
   }

@@ -11,8 +11,7 @@ import { api } from "../../services/api"
 import { BsPlusLg } from "react-icons/bs"
 import { CgClose } from "react-icons/cg"
 import { VscExpandAll } from "react-icons/vsc"
-
-
+import toast from "react-hot-toast";
 
 const PostIndexPage = () => {
 
@@ -20,6 +19,7 @@ const PostIndexPage = () => {
   const [tags, setTags] = useState([])
   const [togglePostCreate, setTogglePostCreate] = useState(false)
   const [search, setSearch] = useState('')
+  const [reload, setReload] = useState(false)
 
   const [postDescription, setPostDescription] = useState([])
 
@@ -30,7 +30,22 @@ const PostIndexPage = () => {
     api.get('tag').then((response) => {
       setTags(response.data.tags)
     })
-  }, [])
+  }, [reload])
+
+  const handleCreatePost = () => {
+    api.post('post/create', {
+      name: "",
+      description: postDescription,
+      tags: []
+    }).then((response) => {
+      toast.success("Postagem criada com sucesso")
+      setReload(!reload)
+    }).catch(e => {
+      toast.error(`Um erro ocorreu: ${e}`)
+    })
+    setPostDescription("")
+    setTogglePostCreate(false)
+  }
 
   return (
     <Container>
@@ -70,7 +85,7 @@ const PostIndexPage = () => {
             value={postDescription} 
             onChange={e => {setPostDescription(e.target.value)}}>
           </textarea>
-          <SubmitButton> Postar </SubmitButton>
+          <SubmitButton onClick={handleCreatePost}> Postar </SubmitButton>
         </section>
       }
 

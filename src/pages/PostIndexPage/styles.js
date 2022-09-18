@@ -8,7 +8,64 @@ export const Container = styled.div`
   font-family: 'Roboto Flex';
   padding: 5vh 3vw;
 
-  .posts-section {
+  section.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin-bottom: 3vh;
+
+    h1 {
+      color: #282424;
+      font-size: 40px;
+      font-weight: 500;
+    }
+
+  }
+
+  section.filters{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 5vh;
+
+    h2 {
+      font-family: 'Fira Sans';
+      font-weight: 400;
+      font-size: 25px;
+      color: #282424;
+    }
+
+    .tags-row {
+      display: flex;
+      justify-content: space-between;
+
+      .tags {
+        display: flex;
+        gap: 10px;
+
+        .tag {
+          background-color: #004E98;
+          padding: 3px 40px;
+          color: white;
+          border-radius: 15px;
+        }
+      }
+
+      .see-all {
+        display: flex;
+        gap: 3px;
+        align-items: center;
+
+        .icon {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+
+  section.posts-section {
     display: flex;
     flex-direction: column;
     gap: 20px;

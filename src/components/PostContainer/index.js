@@ -5,6 +5,7 @@ import {MdOutlineAddReaction} from 'react-icons/md'
 import TagArrow from '../TagArrow';
 
 const PostContainer = ({children, post, ...props}) => {
+  console.log(post.comments.length)
   return (
     <Container> 
       <div className='author-info'>
@@ -25,11 +26,11 @@ const PostContainer = ({children, post, ...props}) => {
       <div className='buttons'>
         <button>
           <MdOutlineAddReaction className="icon"/>
-          <p> Reagido por 30 pessoas </p>
+          <p> Reagido por {post.reacteds.length} pessoas </p>
         </button>
         <button>
           <AiOutlineComment className="icon"/>
-          <p> 27 Comentários </p>
+          <p> {post.comments.length} Comentários </p>
         </button>
       </div>
     </Container>

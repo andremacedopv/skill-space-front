@@ -6,11 +6,11 @@ import TagArrow from '../TagArrow';
 import { useState } from 'react';
 import ReactionModal from '../ReactionModal';
 
-const PostContainer = ({children, post, ...props}) => {
+const PostContainer = ({children, post, setReload, reload, ...props}) => {
   const [modal, setModal] = useState(false)
   return (
     <Container> 
-      {modal && <ReactionModal postId={post.id} reactions={post.reacteds} setModal={setModal}/>}
+      {modal && <ReactionModal postId={post.id} reactions={post.reacteds} setModal={setModal} setReload={setReload} reload={reload}/>}
 
       <div className='author-info'>
       <img src={userImg} alt={`Author`}></img>

@@ -116,7 +116,7 @@ const PostIndexPage = () => {
 
       <section className="posts-section">
         {posts.map((post, i) => {
-          return <PostContainer key={i} post={post}/>
+          return <PostContainer key={i} post={post} setReload={setReload} reload={reload}/>
         })}
       </section>
 

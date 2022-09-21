@@ -11,8 +11,9 @@ import {
 } from 'react-icons/bs'
 
 import { api } from '../../services/api'
+import toast from 'react-hot-toast'
 
-const ReactionModal = ({postId, reactions, setModal, ...props}) => {
+const ReactionModal = ({postId, reactions, setModal, setReload, reload, ...props}) => {
 
   const emojis = [
     {name: "Like", icon: <BsHandThumbsUpFill color="gold" className='icon'/>},
@@ -27,6 +28,10 @@ const ReactionModal = ({postId, reactions, setModal, ...props}) => {
   const handleReaction = (reaction) => {
     api.post(`/post/reaction/create/${postId}`, {
       status: reaction
+    }).then(() => {
+      toast.success("Postagem reagida!")
+      setModal(false)
+      setReload(!reload)
     })
   }
 

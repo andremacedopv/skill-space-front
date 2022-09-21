@@ -3,11 +3,17 @@ import userImg from '../../assets/userImg.jpg'
 import {AiOutlineComment} from 'react-icons/ai'
 import {MdOutlineAddReaction} from 'react-icons/md'
 import TagArrow from '../TagArrow';
+import { useState } from 'react';
+import ReactionModal from '../ReactionModal';
 
 const PostContainer = ({children, post, ...props}) => {
-  console.log(post.comments.length)
+  const [modal, setModal] = useState(false)
   return (
     <Container> 
+
+
+      {modal && <ReactionModal post={post} setModal={setModal}/>}
+
       <div className='author-info'>
       <img src={userImg} alt={`Author`}></img>
         <p className='author-name'> {post.user.name} </p>
@@ -26,7 +32,7 @@ const PostContainer = ({children, post, ...props}) => {
       <div className='buttons'>
         <button>
           <MdOutlineAddReaction className="icon"/>
-          <p> Reagido por {post.reacteds.length} pessoas </p>
+          <p onClick={() => setModal(true)}> Reagido por {post.reacteds.length} pessoas </p>
         </button>
         <button>
           <AiOutlineComment className="icon"/>

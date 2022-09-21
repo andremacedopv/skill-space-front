@@ -62,6 +62,26 @@ export const Container = styled.div`
     animation: zoomIn 0.5s;
 
     font-family: 'Fira Sans';
+
+    .emojis {
+
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+
+      .emoji-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        cursor: pointer;
+
+        .icon {
+          font-size: 35px;
+        }
+      }
+    }
   }
 
 `;

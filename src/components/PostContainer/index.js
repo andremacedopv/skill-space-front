@@ -10,9 +10,7 @@ const PostContainer = ({children, post, ...props}) => {
   const [modal, setModal] = useState(false)
   return (
     <Container> 
-
-
-      {modal && <ReactionModal post={post} setModal={setModal}/>}
+      {modal && <ReactionModal postId={post.id} reactions={post.reacteds} setModal={setModal}/>}
 
       <div className='author-info'>
       <img src={userImg} alt={`Author`}></img>

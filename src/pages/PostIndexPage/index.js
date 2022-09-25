@@ -26,7 +26,7 @@ const PostIndexPage = () => {
   const [postTags, setPostTags] = useState([])
 
   useEffect(() => {
-    api.get('feed').then((response) => {
+    api.get('post/feed').then((response) => {
       setPosts(response.data.posts)
     })
     api.get('tag').then((response) => {

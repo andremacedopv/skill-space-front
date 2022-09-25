@@ -44,7 +44,7 @@ export const UserSidebar = () => {
                             <UserSidebarButton 
                                 Icon={RiBallPenFill}
                                 collapse={collapse} 
-                                selected={location.startsWith("/stage")} 
+                                selected={location.startsWith("/stage") || location.startsWith("/activity")} 
                                 text="Atividades" 
                                 color="#980012"
                             />

@@ -7,11 +7,4 @@ export const Container = styled.div`
   min-height: 100vh;
   font-family: 'Roboto Flex';
   padding: 5vh 3vw;
-
-  section.posts-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
 `;

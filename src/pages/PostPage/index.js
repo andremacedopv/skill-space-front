@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import PostContainer from "../../components/PostContainer";
 
 import { api } from "../../services/api"
-
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {BsArrowLeftShort} from "react-icons/bs"
+import BackButton from "../../components/BackButton";
 
 const PostPage = () => {
 
@@ -14,7 +15,6 @@ const PostPage = () => {
 
   let { id } = useParams();
 
-  console.log(post)
   useEffect(() => {
     api.get(`post/${id}`).then((response) => {
       setPost(response.data.post)
@@ -23,6 +23,7 @@ const PostPage = () => {
 
   return (
     <Container>
+      <BackButton/>
       <PostContainer post={post} setReload={setReload} reload={reload} comments={true}/>
     </Container>
   )

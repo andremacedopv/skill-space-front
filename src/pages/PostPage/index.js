@@ -23,7 +23,7 @@ const PostPage = () => {
 
   return (
     <Container>
-      <PostContainer post={post} setReload={setReload} reload={reload}/>
+      <PostContainer post={post} setReload={setReload} reload={reload} comments={true}/>
     </Container>
   )
 }

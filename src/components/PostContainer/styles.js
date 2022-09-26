@@ -86,5 +86,12 @@ export const Container = styled.div`
       filter: contrast(200%);
     }
   }
+
+  .comments {
+    padding-left: 3vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   
 `;

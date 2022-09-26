@@ -90,9 +90,41 @@ export const Container = styled.div`
   .create-comment {
     padding-left: 3vw;
     display: flex;
+    align-items: center;
+    gap: 10px;
 
     .description-input {
       width: 100%;
+      font-weight: 400;
+      font-size: 17px;
+      font-family: 'Roboto Flex';
+      padding: 15px 10px;
+      border: none;
+      border-bottom: 1px solid #808080;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 200px;
+      padding: 12px;
+      height: 50%;
+      aspect-ratio: 1 / 1;
+      background-color: #004E98;
+      border: none;
+      cursor: pointer;
+      transition: 0.6s;
+
+      .icon {
+        color: white;
+        font-size: 25px;
+      }
+
+      :hover {
+        filter: contrast(200%);
+      }
     }
   }
 

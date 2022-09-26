@@ -38,7 +38,7 @@ const PostContainer = ({children, post, setReload, reload, comments=false, level
       toast.error(`Um erro ocorreu: ${e}`)
     })
     setPostDescription("")
-    toggleCommentCreate(false)
+    setToggleCommentCreate(false)
   }
 
 
@@ -84,13 +84,13 @@ const PostContainer = ({children, post, setReload, reload, comments=false, level
         <section className="create-comment">
           <textarea 
             className="description-input"
-            rows="6"
+            rows="3"
             placeholder="Digite o seu comentário" 
             value={postDescription} 
             onChange={e => {setPostDescription(e.target.value)}}>
           </textarea>
           <button onClick={handleCreateComment}>
-            <RiSendPlaneFill/>
+            <RiSendPlaneFill className='icon'/>
           </button>
         </section>
       }

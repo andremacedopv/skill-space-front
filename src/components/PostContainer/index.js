@@ -7,7 +7,7 @@ import { useState } from 'react';
 import ReactionModal from '../ReactionModal';
 import { useNavigate } from 'react-router-dom'
 
-const PostContainer = ({children, post, setReload, reload, comments=false, ...props}) => {
+const PostContainer = ({children, post, setReload, reload, comments=false, level=0, ...props}) => {
   const [modal, setModal] = useState(false)
   const navigate = useNavigate()
   console.log(post)
@@ -40,9 +40,9 @@ const PostContainer = ({children, post, setReload, reload, comments=false, ...pr
           <p onClick={() => navigate(`/post/${post.id}`)}> {post.comments && post.comments.length} Comentários </p>
         </button>
       </div>
-      {comments &&
+      {(comments && level < 2) &&
         <div className='comments'>
-          {post.comments && post.comments.map(comment => <PostContainer post={comment} setReload={setReload} reload={reload} comments={false}/>)}
+          {post.comments && post.comments.map(comment => <PostContainer post={comment} setReload={setReload} reload={reload} comments={true} level={level+1}/>)}
         </div>
       }
       

@@ -45,10 +45,17 @@ export const Container = styled.div`
     position: relative;
     background-color: #F8F9FA;
     border-radius: 7px;
-
     padding: 20px;
-
     width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  
+
+    font-family: 'Fira Sans';
 
     @keyframes zoomIn {
       0% {
@@ -61,24 +68,69 @@ export const Container = styled.div`
 
     animation: zoomIn 0.5s;
 
-    font-family: 'Fira Sans';
-
     .emojis {
 
       display: flex;
       justify-content: center;
       gap: 20px;
+      margin-bottom: 20px;
 
       .emoji-container {
         display: flex;
+        padding: 5px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 5px;
+        gap: 1px;
         cursor: pointer;
 
         .icon {
           font-size: 35px;
+        }
+      }
+
+      .emoji-container.selected {
+        border-bottom:2px #03214A solid;
+      }
+    }
+
+    .users {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      .user-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        width: 100%;
+        padding: 8px;
+
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+
+        .name-image {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+
+
+        img{
+          object-fit: cover;
+          height: 45px;
+          width: 45px;
+          border-radius: 30px;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .icon {
+          font-size: 25px;
         }
       }
     }

@@ -13,6 +13,7 @@ import EventIndexPage from "../pages/EventIndexPage";
 import StageIndexPage from "../pages/StageIndexPage";
 import ActivityIndexPage from "../pages/ActivityIndexPage";
 import PostIndexPage from "../pages/PostIndexPage";
+import PostPage from "../pages/PostPage";
 import ActivityPage from "../pages/ActivityPage";
 
 const Router = () => {
@@ -46,6 +47,12 @@ const Router = () => {
                 <Container>
                     <UserSidebar/>
                     <PostIndexPage />
+                </Container>
+            }/>
+            <Route exact path="/post/:id" element={
+                <Container>
+                    <UserSidebar/>
+                    <PostPage />
                 </Container>
             }/>
             <Route exact path="/" element={< UserTestPage />} />

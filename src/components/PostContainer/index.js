@@ -5,18 +5,20 @@ import {MdOutlineAddReaction} from 'react-icons/md'
 import TagArrow from '../TagArrow';
 import { useState } from 'react';
 import ReactionModal from '../ReactionModal';
+import { useNavigate } from 'react-router-dom'
 
 const PostContainer = ({children, post, setReload, reload, ...props}) => {
   const [modal, setModal] = useState(false)
+  const navigate = useNavigate()
   return (
     <Container> 
       {modal && <ReactionModal postId={post.id} reactions={post.reacteds} setModal={setModal} setReload={setReload} reload={reload}/>}
 
       <div className='author-info'>
       <img src={userImg} alt={`Author`}></img>
-        <p className='author-name'> {post.user.name} </p>
+        <p className='author-name'> {post.user && post.user.name} </p>
         <div className='tags'>
-          {post.tags.map((tag, i) => {
+          {post.tags && post.tags.map((tag, i) => {
             return <TagArrow key={i} name={tag.name}/>
           } )}
         </div>
@@ -30,11 +32,11 @@ const PostContainer = ({children, post, setReload, reload, ...props}) => {
       <div className='buttons'>
         <button>
           <MdOutlineAddReaction className="icon"/>
-          <p onClick={() => setModal(true)}> Reagido por {post.reacteds.length} pessoas </p>
+          <p onClick={() => setModal(true)}> Reagido por {post.reacteds && post.reacteds.length} pessoas </p>
         </button>
         <button>
           <AiOutlineComment className="icon"/>
-          <p> {post.comments.length} Comentários </p>
+          <p onClick={() => navigate(`/post/${post.id}`)}> {post.comments && post.comments.length} Comentários </p>
         </button>
       </div>
     </Container>

@@ -87,6 +87,15 @@ export const Container = styled.div`
     }
   }
 
+  .create-comment {
+    padding-left: 3vw;
+    display: flex;
+
+    .description-input {
+      width: 100%;
+    }
+  }
+
   .comments {
     padding-left: 3vw;
     display: flex;

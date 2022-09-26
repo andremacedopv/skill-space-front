@@ -1,12 +1,12 @@
 import { Container } from "./styles";
 import { useState, useEffect } from "react";
-
-import PostContainer from "../../components/PostContainer";
+import { useParams } from "react-router-dom";
 
 import { api } from "../../services/api"
-import { useNavigate, useParams } from "react-router-dom";
-import {BsArrowLeftShort} from "react-icons/bs"
+
+import PostContainer from "../../components/PostContainer";
 import BackButton from "../../components/BackButton";
+
 
 const PostPage = () => {
 

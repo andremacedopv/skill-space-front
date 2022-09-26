@@ -13,6 +13,7 @@ import EventIndexPage from "../pages/EventIndexPage";
 import StageIndexPage from "../pages/StageIndexPage";
 import ActivityIndexPage from "../pages/ActivityIndexPage";
 import PostIndexPage from "../pages/PostIndexPage";
+import ActivityPage from "../pages/ActivityPage";
 
 const Router = () => {
     return (
@@ -35,12 +36,18 @@ const Router = () => {
                     <ActivityIndexPage />
                 </Container>
             } />
+            <Route exact path="/activity/:id" element={
+                <Container>
+                    <UserSidebar/>
+                    <ActivityPage />
+                </Container>
+            } />
             <Route exact path="/post" element={
                 <Container>
                     <UserSidebar/>
                     <PostIndexPage />
                 </Container>
-            } />
+            }/>
             <Route exact path="/" element={< UserTestPage />} />
             <Route exact path="/test" element={< TestPage />} />
             <Route exact path="/login" element={<LoginPage />} />

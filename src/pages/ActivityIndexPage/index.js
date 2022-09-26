@@ -247,7 +247,7 @@ const ActivityIndexPage = () => {
                   <div className="description-div">
                     <p><b>Descrição: </b>{activity.description}</p>
                     <div className="btns-expand">
-                      <SubmitButton>Ver Mais</SubmitButton>
+                      <SubmitButton onClick={() => navigate(`/activity/${activity.id}`)}>Ver Mais</SubmitButton>
                     </div>
                   </div>
                 </td>

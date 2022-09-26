@@ -1,6 +1,6 @@
 import { Container } from './styles'
 
-import {AiOutlineClose, AiFillFire} from 'react-icons/ai'
+import {AiOutlineClose} from 'react-icons/ai'
 import {
   BsHandThumbsUpFill, 
   BsHandThumbsDownFill,
@@ -24,9 +24,8 @@ const ReactionModal = ({postId, reactions, setModal, setReload, reload, ...props
   const { user } = useUserContext();
   useEffect(() => {
     setUserReaction(reactions.find(reaction => reaction.userId === user.user.id)?.status)
-  }, [])
+  }, [reactions, user.user.id])
   
-
   const emojis = [
     {name: "Like", icon: <BsHandThumbsUpFill color="gold" className='icon'/>},
     {name: "Dislike", icon: <BsHandThumbsDownFill color="gold" className='icon'/>},

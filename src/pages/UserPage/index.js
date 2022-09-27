@@ -101,13 +101,15 @@ const UserPage = () => {
         </div>
         <div className="buttons">
           {
-            (user?.user.id !== parseInt(id)) &&
+            (user?.user.id !== parseInt(id)) ?
             <>
               <ButtonContainer onClick={handleToggleFollow}> <BsPlusLg/> {
                 userInfo.followings?.find(following => following.followers.followerId === user.user.id) ? "Deixar de Seguir" : "Seguir"
               } </ButtonContainer>
               <ButtonContainer> Conversar </ButtonContainer>
             </>
+            :
+            <ButtonContainer> Editar Perfil </ButtonContainer>
           }
         </div>
       </section>

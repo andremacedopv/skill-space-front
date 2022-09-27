@@ -11,7 +11,7 @@ import { FaHashtag, FaCalendar } from "react-icons/fa"
 import { BsFillChatDotsFill} from "react-icons/bs"
 import { GoGear} from "react-icons/go"
 
-import { Link,useLocation } from "react-router-dom";
+import { Link,useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../contexts/useUserContext";
 import { useState } from 'react'
 
@@ -24,6 +24,7 @@ export const UserSidebar = () => {
     const [collapse, setCollapse] = useState(false);
 
     const location = useLocation().pathname
+    const navigate = useNavigate()
 
     const collapseButton = () => {
         setCollapse(!collapse);
@@ -82,7 +83,7 @@ export const UserSidebar = () => {
 
                 {
                     user? 
-                    <div className='profile'>
+                    <div className='profile' onClick={() => navigate(`/post/user/${user.user.id}`)}>
                         <img src={userImg} alt="user profile"></img>
                         <div className='profile-texts'>
                             <p className='profile-name'>{user.user.name}</p>

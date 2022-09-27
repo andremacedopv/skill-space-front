@@ -10,6 +10,7 @@ import ToggleInput from "../../components/ToggleInput";
 import SelectInput from "../../components/SelectInput";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
 
@@ -80,7 +81,7 @@ const SignUpPage = () => {
     e.preventDefault();
 
     if(password !== passwordConfirm) {
-      alert('As senhas não conferem');
+      toast.error('As senhas não conferem');
       return;
     }
 
@@ -104,11 +105,11 @@ const SignUpPage = () => {
           tags: tagArray,
       });
       if (response.data) {
-        alert("Usuário criado.");
         navigate("/login");
+        toast.success("Usuário criado.");
       }    
     } catch (error) {
-      alert('Erro, tente novamente.','error');
+      toast.error('Erro, tente novamente.');
     }
   }
 

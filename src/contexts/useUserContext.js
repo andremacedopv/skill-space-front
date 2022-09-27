@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 const UserContext = createContext();
 
@@ -57,8 +58,7 @@ const UserProvider = ({children}) => {
                 api.defaults.headers.common[`Authorization`] = response.data.token
             }
         }catch(e){
-            console.log(e)
-            alert('Não conseguimos efetuar seu login. Por favor, tente novamente.')
+            toast.error('Não conseguimos efetuar seu login. Por favor, tente novamente.')
         }
     }
 

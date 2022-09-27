@@ -3,6 +3,7 @@ import { useUserContext } from "../../contexts/useUserContext";
 import { useState } from "react";
 import BG from '../../assets/login_bg.png';
 import logo from '../../assets/Logo.svg';
+import toast from "react-hot-toast";
 
 import FormInput from "../../components/FormInput";
 import SubmitButton from "../../components/SubmitButton";
@@ -18,7 +19,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     if(email === "" || password === "") {
-      alert('Insira seu email e senha para continuar');
+      toast.error('Insira seu email e senha para continuar');
     }
 
     await login({email, password});

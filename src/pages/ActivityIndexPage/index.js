@@ -7,6 +7,7 @@ import StageProgress from "../../components/StageProgress";
 import { FaLock, FaLockOpen, FaAngleDown, FaAngleUp, FaExclamation } from "react-icons/fa";
 import SubmitButton from "../../components/SubmitButton";
 import { Tooltip } from '@mui/material';
+import toast from "react-hot-toast";
 
 const ActivityIndexPage = () => {
 
@@ -65,7 +66,7 @@ const ActivityIndexPage = () => {
       fetchStage(id)
       navigate(`/stage/${id}`)
     }).catch((error) => {
-      alert('Erro ao iniciar estágio')
+      toast.error('Erro ao iniciar estágio')
     })
   }
 
@@ -75,7 +76,7 @@ const ActivityIndexPage = () => {
       fetchStage(id)
       navigate(`/stage/${id}`)
     }).catch((error) => {
-      alert('Erro ao finalizar estágio')
+      toast.error('Erro ao finalizar estágio')
     })
   }
 

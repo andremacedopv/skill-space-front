@@ -66,13 +66,13 @@ export const Container = styled.div`
         align-items: center;
         justify-content: center;
         gap: 15px;
-        cursor: pointer;
         
         img{
             object-fit: cover;
             height: ${(props) => props.collapse ? "40px" : "50px"};
             width: ${(props) => props.collapse ? "40px" : "50px"};
             border-radius: 30px;
+            cursor: pointer;
         }
 
         .profile-texts{

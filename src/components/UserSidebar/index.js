@@ -10,6 +10,7 @@ import { RiBallPenFill, RiQuestionFill } from "react-icons/ri"
 import { FaHashtag, FaCalendar } from "react-icons/fa"
 import { BsFillChatDotsFill} from "react-icons/bs"
 import { GoGear} from "react-icons/go"
+import { MdLogout} from "react-icons/md"
 
 import { Link,useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../contexts/useUserContext";
@@ -20,7 +21,7 @@ import UserSidebarButton from './UserSidebarButton';
 
 export const UserSidebar = () => {
 
-    const { user } = useUserContext();
+    const { user, sign_out } = useUserContext();
     const [collapse, setCollapse] = useState(false);
 
     const location = useLocation().pathname
@@ -83,12 +84,13 @@ export const UserSidebar = () => {
 
                 {
                     user? 
-                    <div className='profile' onClick={() => navigate(`/post/user/${user.user.id}`)}>
-                        <img src={userImg} alt="user profile"></img>
+                    <div className='profile'>
+                        <img src={userImg} alt="user profile" onClick={() => navigate(`/post/user/${user.user.id}`)}></img>
                         <div className='profile-texts'>
                             <p className='profile-name'>{user.user.name}</p>
                             <p className='profile-email'>{user.user.email}</p>
                         </div>
+                        <MdLogout className='icon' onClick={sign_out}/>
                     </div>
                     :
                     <div className='profile'></div>

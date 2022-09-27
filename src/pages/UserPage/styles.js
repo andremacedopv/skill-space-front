@@ -64,7 +64,7 @@ export const Container = styled.div`
     .buttons {
       display: flex;
       flex-direction: column;
-      width: 20%;
+      width: 28%;
       gap: 10px;
     }
 

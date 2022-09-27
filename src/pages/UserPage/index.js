@@ -41,10 +41,9 @@ const UserPage = () => {
       setTags(response.data.tags)
     })
     api.get(`user/${id}`).then((response) => {
-      console.log(response.data.user)
       setUserInfo(response.data.user)
     })
-  }, [reload, id])
+  }, [reload, id, user])
 
   const handleCreatePost = () => {
 
@@ -68,6 +67,18 @@ const UserPage = () => {
     setTogglePostCreate(false)
   }
 
+  const handleToggleFollow = () => {
+    api.post(`/follow/${id}`)
+    .then((response) => {
+      const wasFollowing = userInfo.followings.find(following => following.followers.followerId === user.user.id)
+      wasFollowing ? toast.success(`Você não está mais seguindo ${userInfo.name}`) : toast.success(`Você está seguindo ${userInfo.name}`) 
+      setReload(!reload)
+    })
+    .catch(e => {
+      toast.error(`Um erro ocorreu: ${e}`)
+    })
+  }
+
   return (
     <Container>
 
@@ -88,7 +99,9 @@ const UserPage = () => {
           {
             (user?.user.id !== parseInt(id)) &&
             <>
-              <ButtonContainer> <BsPlusLg/> Seguir </ButtonContainer>
+              <ButtonContainer onClick={handleToggleFollow}> <BsPlusLg/> {
+                userInfo.followings?.find(following => following.followers.followerId === user.user.id) ? "Deixar de Seguir" : "Seguir"
+              } </ButtonContainer>
               <ButtonContainer> Conversar </ButtonContainer>
             </>
           }

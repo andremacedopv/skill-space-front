@@ -47,7 +47,7 @@ const PostContainer = ({children, post, setReload, reload, comments=false, level
       {modal && <ReactionModal postId={post.id} reactions={post.reacteds} setModal={setModal} setReload={setReload} reload={reload}/>}
 
       <div className='author-info'>
-      <img src={userImg} alt={`Author`}></img>
+        <img src={userImg} alt={`Author`} onClick={() => {navigate(`/post/user/${post.user.id}`)}}></img>
         <p className='author-name'> {post.user && post.user.name} </p>
         <div className='tags'>
           {post.tags && post.tags.map((tag, i) => {

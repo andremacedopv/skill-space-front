@@ -27,11 +27,9 @@ const UserPage = () => {
   const [postDescription, setPostDescription] = useState("")
   const [postName, setPostName] = useState("")
   const [postTags, setPostTags] = useState([])
-
   
   const { id } = useParams();
-  const { user } = useUserContext();
-  
+  const { user } = useUserContext();  
 
   useEffect(() => {
     api.get(`post/feed/user/${id}`).then((response) => {
@@ -41,6 +39,7 @@ const UserPage = () => {
       setTags(response.data.tags)
     })
     api.get(`user/${id}`).then((response) => {
+      response.data.user.activitiesCompleted = response.data.activitiesCompleted
       setUserInfo(response.data.user)
     })
   }, [reload, id, user])
@@ -91,7 +90,7 @@ const UserPage = () => {
               <p> <span>{userInfo.followings?.length}</span> seguidores </p>
               <p> <span>{userInfo.follows?.length}</span> seguindo </p>
             </div>
-            <p> <span>40</span> atividades concluídas </p>
+            <p> <span>{userInfo.activitiesCompleted}</span> atividades concluídas </p>
             <p> <span>{posts.length}</span> postagens </p>
             {
               (user?.user.id !== parseInt(id) && userInfo.follows?.find(follower => follower.followers.followingId === user.user.id)) && 

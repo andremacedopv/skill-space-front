@@ -93,6 +93,10 @@ const UserPage = () => {
             </div>
             <p> <span>40</span> atividades concluídas </p>
             <p> <span>{posts.length}</span> postagens </p>
+            {
+              (user?.user.id !== parseInt(id) && userInfo.follows?.find(follower => follower.followers.followingId === user.user.id)) && 
+              <h4>{userInfo.name} está te seguindo</h4>
+            }
           </div>
         </div>
         <div className="buttons">

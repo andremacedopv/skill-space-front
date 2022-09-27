@@ -36,7 +36,6 @@ export const Container = styled.div`
         font-family: 'Fira Sans';
   
         h1 {
-          
           font-weight: 500;
           font-size: 35px;
           color: #282424;
@@ -56,6 +55,13 @@ export const Container = styled.div`
         .follow{
           display: flex;
           gap: 15px;
+        }
+
+        h4 {
+          margin-top: 3vh;
+          font-weight: 400;
+          font-size: 18px;
+          color: #004E98;
         }
   
       }

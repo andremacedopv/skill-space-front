@@ -53,7 +53,7 @@ const UserProvider = ({children}) => {
             if(response.data){
                 setUser({...response.data})
                 var encrypted = CryptoJS.AES.encrypt(JSON.stringify({...response.data}), process.env.REACT_APP_CRYPTO_KEY).toString();
-                Cookies.set('user', encrypted, {expires: 1, sameSite: 'None', secure: true });
+                Cookies.set('user', encrypted, {expires: 0.125, sameSite: 'None', secure: true });
                 navigate('/stage')
                 api.defaults.headers.common[`Authorization`] = response.data.token
             }

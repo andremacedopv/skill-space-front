@@ -8,74 +8,66 @@ export const Container = styled.div`
   font-family: 'Roboto Flex';
   padding: 5vh 3vw;
 
-  section.header{
+  section.user-info {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    margin-bottom: 3vh;
-
-    h1 {
-      color: #282424;
-      font-size: 40px;
-      font-weight: 500;
-    }
-
-  }
-
-  section.filters{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin: 0 auto;
     margin-bottom: 5vh;
+    width: 80%;
+    gap: 5vw;
 
-    h2 {
-      font-family: 'Fira Sans';
-      font-weight: 400;
-      font-size: 25px;
-      color: #282424;
-    }
-
-    .tags-row {
+    .image-info {
       display: flex;
-      justify-content: space-between;
+      gap: 3vw;
+      align-items: center;
 
-      .tags {
+      img{
+        object-fit: cover;
+        width: 200px;
+        aspect-ratio: 1/1;
+        border-radius: 999px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+  
+      .info {
         display: flex;
-        gap: 10px;
-
-        .tag {
-          cursor: pointer;
-          background-color: #004E98;
-          padding: 3px 40px;
-          color: white;
-          border-radius: 15px;
-          transition: 0.5s;
-
-          :hover {
-            filter: contrast(200%)
+        flex-direction: column;
+        font-family: 'Fira Sans';
+  
+        h1 {
+          
+          font-weight: 500;
+          font-size: 35px;
+          color: #282424;
+          margin-bottom: 2vh;
+        }
+  
+        p {
+          font-weight: 500;
+          font-size: 19px;
+          color: #999999;
+  
+          span {
+            color: #333333;
           }
         }
-      }
-
-      .see-all {
-        display: flex;
-        gap: 3px;
-        align-items: center;
-
-        cursor: pointer;
-        transition: 0.5s;
-
-        :hover {
-          filter: contrast(200%)
+  
+        .follow{
+          display: flex;
+          gap: 15px;
         }
-
-        .icon {
-          font-size: 25px;
-        }
+  
       }
     }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+      gap: 10px;
+    }
+
   }
 
   section.create-post{

@@ -2,6 +2,8 @@ import { Container } from "./styles";
 import { useState, useEffect } from "react";
 import Select from 'react-select'
 
+import userImg from '../../assets/userImg.jpg'
+
 import PostContainer from "../../components/PostContainer";
 import SubmitButton from "../../components/SubmitButton"
 
@@ -12,18 +14,24 @@ import { CgClose } from "react-icons/cg"
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
+import { useUserContext } from "../../contexts/useUserContext";
+import { ButtonContainer } from "../../components/SubmitButton/styles";
+
 const UserPage = () => {
 
   const [posts, setPosts] = useState([])
   const [tags, setTags] = useState([])
+  const [userInfo, setUserInfo] = useState([])
   const [togglePostCreate, setTogglePostCreate] = useState(false)
   const [reload, setReload] = useState(false)
-
-  let { id } = useParams();
-
   const [postDescription, setPostDescription] = useState("")
   const [postName, setPostName] = useState("")
   const [postTags, setPostTags] = useState([])
+
+  
+  const { id } = useParams();
+  const { user } = useUserContext();
+  
 
   useEffect(() => {
     api.get(`post/feed/user/${id}`).then((response) => {
@@ -32,7 +40,11 @@ const UserPage = () => {
     api.get('tag').then((response) => {
       setTags(response.data.tags)
     })
-  }, [reload])
+    api.get(`user/${id}`).then((response) => {
+      console.log(response.data.user)
+      setUserInfo(response.data.user)
+    })
+  }, [reload, id])
 
   const handleCreatePost = () => {
 
@@ -58,6 +70,30 @@ const UserPage = () => {
 
   return (
     <Container>
+
+      <section className="user-info">
+        <div className="image-info">
+          <img src={userImg} alt={`User`}></img>
+          <div className="info">
+            <h1> {userInfo.name} </h1>
+            <div className="follow">
+              <p> <span>{userInfo.followings?.length}</span> seguidores </p>
+              <p> <span>{userInfo.follows?.length}</span> seguindo </p>
+            </div>
+            <p> <span>40</span> atividades concluídas </p>
+            <p> <span>{posts.length}</span> postagens </p>
+          </div>
+        </div>
+        <div className="buttons">
+          {
+            (user?.user.id !== parseInt(id)) &&
+            <>
+              <ButtonContainer> <BsPlusLg/> Seguir </ButtonContainer>
+              <ButtonContainer> Conversar </ButtonContainer>
+            </>
+          }
+        </div>
+      </section>
 
       {
         togglePostCreate && 
@@ -96,9 +132,12 @@ const UserPage = () => {
         })}
       </section>
 
-      <button className="toggle-create" onClick={() => setTogglePostCreate(!togglePostCreate)}>
-        {togglePostCreate ?  <CgClose/> : <BsPlusLg/>}
-      </button>
+      {
+        (user?.user.id === parseInt(id)) &&
+        <button className="toggle-create" onClick={() => setTogglePostCreate(!togglePostCreate)}>
+          {togglePostCreate ?  <CgClose/> : <BsPlusLg/>}
+        </button>
+      }
 
     </Container>
   )

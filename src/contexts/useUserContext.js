@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 const UserContext = createContext();
 
@@ -36,9 +37,9 @@ const UserProvider = ({children}) => {
         if (window.confirm("Você deseja sair de sua conta?")){
             Cookies.remove('user')
             setUser(null)
-
             api.defaults.headers.common[`Authorization`] = '';
-            navigate('/')
+            navigate('/login')
+            toast.success('Sessão encerrada com sucesso!')
         }
     }
 
@@ -52,13 +53,12 @@ const UserProvider = ({children}) => {
             if(response.data){
                 setUser({...response.data})
                 var encrypted = CryptoJS.AES.encrypt(JSON.stringify({...response.data}), process.env.REACT_APP_CRYPTO_KEY).toString();
-                Cookies.set('user', encrypted, {expires: 1, sameSite: 'None', secure: true });
-                navigate('/')
+                Cookies.set('user', encrypted, {expires: 0.125, sameSite: 'None', secure: true });
+                navigate('/stage')
                 api.defaults.headers.common[`Authorization`] = response.data.token
             }
         }catch(e){
-            console.log(e)
-            alert('Não conseguimos efetuar seu login. Por favor, tente novamente.')
+            toast.error('Não conseguimos efetuar seu login. Por favor, tente novamente.')
         }
     }
 

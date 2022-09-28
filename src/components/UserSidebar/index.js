@@ -10,8 +10,9 @@ import { RiBallPenFill, RiQuestionFill } from "react-icons/ri"
 import { FaHashtag, FaCalendar } from "react-icons/fa"
 import { BsFillChatDotsFill} from "react-icons/bs"
 import { GoGear} from "react-icons/go"
+import { MdLogout} from "react-icons/md"
 
-import { Link,useLocation } from "react-router-dom";
+import { Link,useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../contexts/useUserContext";
 import { useState } from 'react'
 
@@ -20,10 +21,11 @@ import UserSidebarButton from './UserSidebarButton';
 
 export const UserSidebar = () => {
 
-    const { user } = useUserContext();
+    const { user, sign_out } = useUserContext();
     const [collapse, setCollapse] = useState(false);
 
     const location = useLocation().pathname
+    const navigate = useNavigate()
 
     const collapseButton = () => {
         setCollapse(!collapse);
@@ -62,7 +64,16 @@ export const UserSidebar = () => {
                         
                     </div>
                     <div className='sidebar-buttons-row'>
-                        <UserSidebarButton collapse={collapse} Icon={FaHashtag} text="Postagens" color="#830098" />
+                        <Link 
+                            to={'/post'}>
+                            <UserSidebarButton 
+                                Icon={FaHashtag}
+                                collapse={collapse} 
+                                selected={location.startsWith("/post")} 
+                                text="Postagens" 
+                                color="#830098"
+                            />
+                        </Link>
                         <UserSidebarButton collapse={collapse} Icon={BsFillChatDotsFill} text="Mensagens" color="#1E9800" />
                     </div>
                     <div className='sidebar-buttons-row'>
@@ -74,11 +85,12 @@ export const UserSidebar = () => {
                 {
                     user? 
                     <div className='profile'>
-                        <img src={userImg} alt="user profile"></img>
+                        <img src={userImg} alt="user profile" onClick={() => navigate(`/post/user/${user.user.id}`)}></img>
                         <div className='profile-texts'>
                             <p className='profile-name'>{user.user.name}</p>
                             <p className='profile-email'>{user.user.email}</p>
                         </div>
+                        <MdLogout className='icon' onClick={sign_out}/>
                     </div>
                     :
                     <div className='profile'></div>

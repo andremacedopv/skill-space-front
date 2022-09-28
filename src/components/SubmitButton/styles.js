@@ -10,6 +10,11 @@ export const ButtonContainer = styled.button`
     font-weight: 400;
     font-size: 1.1rem;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7%;
+
     border-radius: 9px;
     color: white;
     background: ${props => {

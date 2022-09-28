@@ -72,6 +72,7 @@ export const Container = styled.div`
             height: ${(props) => props.collapse ? "40px" : "50px"};
             width: ${(props) => props.collapse ? "40px" : "50px"};
             border-radius: 30px;
+            cursor: pointer;
         }
 
         .profile-texts{

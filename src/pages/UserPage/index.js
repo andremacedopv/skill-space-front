@@ -2,7 +2,7 @@ import { Container } from "./styles";
 import { useState, useEffect } from "react";
 import Select from 'react-select'
 
-import userImg from '../../assets/userImg.jpg'
+import userPlaceholder from '../../assets/userPlaceholder.png'
 
 import PostContainer from "../../components/PostContainer";
 import SubmitButton from "../../components/SubmitButton"
@@ -16,6 +16,7 @@ import { useParams } from "react-router-dom";
 
 import { useUserContext } from "../../contexts/useUserContext";
 import { ButtonContainer } from "../../components/SubmitButton/styles";
+import { fileUrl } from "../../services/files"
 
 const UserPage = () => {
 
@@ -83,7 +84,11 @@ const UserPage = () => {
 
       <section className="user-info">
         <div className="image-info">
-          <img src={userImg} alt={`User`}></img>
+          { userInfo?.image === null?
+            <img src={userPlaceholder} alt={`User`}></img>
+            :
+            <img src={`${fileUrl.defaults.baseURL + userInfo.image}`} alt={`User`}></img>
+          }
           <div className="info">
             <h1> {userInfo.name} </h1>
             <div className="follow">

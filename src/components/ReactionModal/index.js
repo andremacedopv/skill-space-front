@@ -10,12 +10,13 @@ import {
   BsEmojiAngryFill
 } from 'react-icons/bs'
 
-import userImg from '../../assets/userImg.jpg'
+import userPlaceholder from '../../assets/userPlaceholder.png'
 import { api } from '../../services/api'
 import { useUserContext } from "../../contexts/useUserContext";
 
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react';
+import { fileUrl } from "../../services/files"
 
 const ReactionModal = ({postId, reactions, setModal, setReload, reload, ...props}) => {
 
@@ -62,7 +63,11 @@ const ReactionModal = ({postId, reactions, setModal, setReload, reload, ...props
             reactions.map(reaction => {
               return  <div className='user-container'> 
                         <div className='name-image'>
-                          <img src={userImg} alt={`Author`}></img>
+                          { reaction.user?.image === null? 
+                          <img src={userPlaceholder} alt={`Author`}></img>
+                          :
+                          <img src={`${fileUrl.defaults.baseURL + reaction.user?.image}`} alt={`Author`}></img>
+                          }
                           <p> {reaction.user.name} </p>
                         </div>
                         {emojis.find(emoji => emoji.name === reaction.status).icon}

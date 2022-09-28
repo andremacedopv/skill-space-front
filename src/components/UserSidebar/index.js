@@ -1,6 +1,6 @@
 import { Container } from './styles';
 import LogoSvg from '../../assets/LogoBlue.svg';
-import userImg from '../../assets/userImg.jpg'
+import userPlaceholder from '../../assets/userPlaceholder.png'
 
 import { 
     AiOutlineDoubleLeft, 
@@ -17,6 +17,7 @@ import { useUserContext } from "../../contexts/useUserContext";
 import { useState } from 'react'
 
 import UserSidebarButton from './UserSidebarButton';
+import { fileUrl } from "../../services/files"
 
 
 export const UserSidebar = () => {
@@ -29,7 +30,7 @@ export const UserSidebar = () => {
 
     const collapseButton = () => {
         setCollapse(!collapse);
-    }
+    }    
 
     return (
         <Container collapse={collapse} >
@@ -85,7 +86,11 @@ export const UserSidebar = () => {
                 {
                     user? 
                     <div className='profile'>
-                        <img src={userImg} alt="user profile" onClick={() => navigate(`/post/user/${user.user.id}`)}></img>
+                        { user?.user?.image === null?
+                            <img src={userPlaceholder} alt="user profile" onClick={() => navigate(`/post/user/${user.user.id}`)}></img>
+                            :
+                            <img src={`${fileUrl.defaults.baseURL + user.user.image}`} alt="user profile" onClick={() => navigate(`/post/user/${user.user.id}`)}></img>
+                        }
                         <div className='profile-texts'>
                             <p className='profile-name'>{user.user.name}</p>
                             <p className='profile-email'>{user.user.email}</p>

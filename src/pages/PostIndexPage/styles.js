@@ -57,6 +57,10 @@ export const Container = styled.div`
             filter: contrast(200%)
           }
         }
+
+        .selected-tag {
+          background-color: #03214A;
+        }
       }
 
       .see-all {

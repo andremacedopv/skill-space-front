@@ -17,6 +17,7 @@ const PostIndexPage = () => {
 
   const [posts, setPosts] = useState([])
   const [tags, setTags] = useState([])
+  const [selectedTag, setSelectedTag] = useState(0)
   const [togglePostCreate, setTogglePostCreate] = useState(false)
   const [search, setSearch] = useState('')
   const [reload, setReload] = useState(false)
@@ -28,6 +29,7 @@ const PostIndexPage = () => {
   useEffect(() => {
     api.get('post/feed').then((response) => {
       setPosts(response.data.posts)
+      console.log(response.data.posts)
     })
     api.get('tag').then((response) => {
       setTags(response.data.tags)
@@ -56,6 +58,15 @@ const PostIndexPage = () => {
     setTogglePostCreate(false)
   }
 
+  const handleTagChange = (id) => {
+    if(selectedTag !== id) {
+      setSelectedTag(id)
+    } else {
+      setSelectedTag(0)
+    }
+    console.log(selectedTag)
+  }
+
   return (
     <Container>
 
@@ -73,10 +84,14 @@ const PostIndexPage = () => {
         <div className="tags-row">
           <div className="tags">
             {tags.map((tag, i) => {
-              return <p key={i} className="tag">{tag.name}</p>
+              if(selectedTag === tag.id){
+                return <p onClick={() => handleTagChange(tag.id)} key={i} className="tag selected-tag">{tag.name}</p>
+              } else {
+                return <p onClick={() => handleTagChange(tag.id)} key={i} className="tag">{tag.name}</p>
+              }
             })}
           </div>
-          <div className="see-all">
+          <div onClick={() => handleTagChange(0)} className="see-all">
             <p> Ver todas </p>
             <VscExpandAll className="icon"/>
           </div>
@@ -116,7 +131,11 @@ const PostIndexPage = () => {
 
       <section className="posts-section">
         {posts.map((post, i) => {
-          return <PostContainer key={i} post={post} setReload={setReload} reload={reload}/>
+          if (selectedTag === 0 || post?.tags?.filter(x => x.id === selectedTag).length > 0) {
+            return <PostContainer key={i} post={post} setReload={setReload} reload={reload}/>
+          } else {
+            return <></>
+          }
         })}
       </section>
 

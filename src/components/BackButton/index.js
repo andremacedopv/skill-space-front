@@ -1,4 +1,4 @@
-import { Container, InputContainer } from "./styles"
+import { Container } from "./styles"
 
 import { useNavigate } from "react-router-dom";
 import {BsArrowLeftShort} from "react-icons/bs"

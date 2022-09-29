@@ -11,7 +11,8 @@ import { api } from "../../services/api"
 
 import TagArrow from '../TagArrow';
 import ReactionModal from '../ReactionModal';
-import userImg from '../../assets/userImg.jpg'
+import userPlaceholder from '../../assets/userPlaceholder.png'
+import { fileUrl } from "../../services/files"
 
 const PostContainer = ({children, post, setReload, reload, comments=false, level=0, ...props}) => {
   
@@ -44,31 +45,35 @@ const PostContainer = ({children, post, setReload, reload, comments=false, level
 
   return (
     <Container> 
-      {modal && <ReactionModal postId={post.id} reactions={post.reacteds} setModal={setModal} setReload={setReload} reload={reload}/>}
+      {modal && <ReactionModal postId={post?.id} reactions={post?.reacteds} setModal={setModal} setReload={setReload} reload={reload}/>}
 
       <div className='author-info'>
-        <img src={userImg} alt={`Author`} onClick={() => {navigate(`/post/user/${post.user.id}`)}}></img>
-        <p className='author-name'> {post.user && post.user.name} </p>
+        { post?.user?.image === null?
+          <img src={userPlaceholder} alt={`Author`} onClick={() => {navigate(`/post/user/${post.user.id}`)}}></img>
+          :
+          <img src={`${fileUrl.defaults.baseURL + post?.user?.image}`} alt={`Author`} onClick={() => {navigate(`/post/user/${post?.user?.id}`)}}></img>
+        }
+        <p className='author-name'> {post?.user && post?.user.name} </p>
         <div className='tags'>
-          {post.tags && post.tags.map((tag, i) => {
+          {post?.tags && post?.tags.map((tag, i) => {
             return <TagArrow key={i} name={tag.name}/>
           } )}
         </div>
       </div>
 
       <div className='post-info'>
-        {post.name && <p className='post-name'> {post.name} </p>}
-        <p className='post-description'> {post.description} </p>
+        {post?.name && <p className='post-name'> {post?.name} </p>}
+        <p className='post-description'> {post?.description} </p>
       </div>
 
       <div className='buttons'>
         <button>
           <MdOutlineAddReaction className="icon"/>
-          <p onClick={() => setModal(true)}> Reagido por {post.reacteds && post.reacteds.length} pessoas </p>
+          <p onClick={() => setModal(true)}> Reagido por {post?.reacteds && post?.reacteds?.length} pessoas </p>
         </button>
         <button>
           <AiOutlineComment className="icon"/>
-          <p onClick={() => navigate(`/post/${post.id}`)}> {post.comments && post.comments.length} Comentários </p>
+          <p onClick={() => navigate(`/post/${post?.id}`)}> {post?.comments && post?.comments.length} Comentários </p>
         </button>
         {
           (comments && level < 2) &&
@@ -98,7 +103,7 @@ const PostContainer = ({children, post, setReload, reload, comments=false, level
       {
         (comments && level < 2) &&
         <div className='comments'>
-          {post.comments && post.comments.map(comment => <PostContainer post={comment} setReload={setReload} reload={reload} comments={true} level={level+1}/>)}
+          {post?.comments && post?.comments.map(comment => <PostContainer post={comment} setReload={setReload} reload={reload} comments={true} level={level+1}/>)}
         </div>
       }
       

@@ -40,7 +40,7 @@ const ActivityPage = () => {
   }
 
   const handleFinalize = () => {
-    if(activity.activityTypeId === 2) {
+    if(activity.activityTypeId === 14) {
       setModal(true)
     } else {
       api.post(`activity/finish/${id}`)
@@ -100,10 +100,10 @@ const ActivityPage = () => {
       <section className='activity-area'>
         <div className="tabs"> 
           <span className={selectedTab === "details" ? "selected" : ""} onClick={() => setSelectedTab("details")}>Detalhes</span>
-          {activityUser?.activitySubmission && activity.activityTypeId === 2 &&
+          {activityUser?.activitySubmission && activity.activityTypeId === 14 &&
             <span className={selectedTab === "submission" ? "selected" : ""} onClick={() => setSelectedTab("submission")}>Minha Submissão</span>
           }
-          {activityUser?.activityFeedback?.userId && activity.activityTypeId === 2 &&
+          {activityUser?.activityFeedback?.userId && activity.activityTypeId === 14 &&
             <span className={selectedTab === "feedback" ? "selected" : ""} onClick={() => setSelectedTab("feedback")}>Feedback</span>
           }
           <div className="line"></div>
@@ -182,14 +182,14 @@ const ActivityPage = () => {
         <SubmitButton className="submit-button" onClick={() => handleFinalize()}>Finalizar Atividade</SubmitButton>
         }
         <div className="grade-section">
-          { activity.activityTypeId === 2 &&
+          { activity.activityTypeId === 14 &&
             <>
             <span className="grade-title">Nota: <b>{activityUser?.activityFeedback?.score? activityUser.activityFeedback?.score + "/10" : '-' }</b></span>
             <div className="grade-line"></div>
             </>
           }
           <p>Status: <span className="grade-status">{getStatus(activity.status)}</span></p>
-          { activity.activityTypeId !== 2 &&
+          { activity.activityTypeId !== 14 &&
           <div className="grade-line"></div>
           }
         </div>
